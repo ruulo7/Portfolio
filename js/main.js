@@ -10,7 +10,7 @@ window.addEventListener('scroll', () => {
 
 // Reveal on scroll — stagger via CSS custom property --reveal-delay
 (function () {
-  const sections = document.querySelectorAll('.projects, .about, .contact');
+  const sections = document.querySelectorAll('main > section:not(#hero)');
   if (!sections.length) return;
 
   sections.forEach(section => {

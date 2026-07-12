@@ -875,6 +875,93 @@ a {
 }
 
 /* ============================================================
+   CASE STUDY — FLOWCK (esqueleto, pendiente de diseño por bloque)
+   ============================================================ */
+.cs-section {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cs-section:last-of-type {
+  border-bottom: none;
+}
+
+/* ---- HOOK ---- */
+.cs-hook__inner {
+  margin: 0 auto;
+  text-align: center;
+}
+.cs-hook__title {
+  font-size: clamp(32px, 4.4vw, 59px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.cs-hook__tagline {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+}
+.cs-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.cs-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  text-align: left;
+  padding: 0 30px;
+  border-left: 1px solid var(--border);
+}
+.cs-meta__item:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+.cs-meta__item:last-child {
+  padding-right: 0;
+}
+.cs-meta__label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.cs-meta__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.cs-hook__body {
+  text-align: left;
+}
+.cs-hook__paragraph {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.cs-hook__body .card__btn {
+  margin-top: 12px;
+}
+.cs-hook__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer {
