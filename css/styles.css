@@ -961,6 +961,198 @@ a {
   margin-bottom: 0;
 }
 
+/* ---- SUB-MOMENTO (Discovery, Benchmark, ...) ---- */
+.cs-subm {
+  margin-bottom: 72px;
+}
+.cs-subm:last-child {
+  margin-bottom: 0;
+}
+.cs-subm__title {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.cs-subm__title em {
+  font-style: italic;
+}
+.cs-subm__text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 800px;
+}
+
+/* ---- QUOTES ---- */
+.cs-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 40px 0 72px;
+  max-width: 800px;
+}
+.cs-quote {
+  border-left: 2px solid var(--border);
+  padding-left: 24px;
+}
+.cs-quote__text {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.cs-quote__cite {
+  display: block;
+  font-style: normal;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* ---- STAT / MOMENTO DE IMPACTO ---- */
+.cs-stat {
+  text-align: center;
+  padding: 64px 0;
+}
+.cs-stat__number {
+  font-size: clamp(32px, 4.4vw, 59px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.cs-stat__caption {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---- SCREEN (pantalla + mockup + texto) ---- */
+.cs-screen {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin-bottom: 96px;
+}
+.cs-screen:last-child {
+  margin-bottom: 0;
+}
+.cs-screen--reverse {
+  flex-direction: row-reverse;
+}
+.cs-screen__media {
+  flex: 1.4;
+  min-width: 0;
+}
+.cs-screen__text {
+  flex: 1;
+  min-width: 0;
+}
+.cs-screen__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.cs-screen__desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* ---- MOCKUP (marco tipo ventana, CSS puro) ---- */
+.cs-mockup {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}
+.cs-mockup__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+.cs-mockup__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.cs-mockup__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 45 / 32;
+  object-fit: cover;
+}
+
+/* ---- DECISION (sub-bloques de Diseño) ---- */
+.cs-decision {
+  margin-bottom: 72px;
+}
+.cs-decision:last-child {
+  margin-bottom: 0;
+}
+.cs-decision__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.cs-decision__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+/* ---- PLACEHOLDER VISUAL (temporal) ---- */
+.cs-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 280px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 0 32px;
+}
+.cs-placeholder--lg {
+  height: 400px;
+  margin: 24px 0;
+}
+.cs-placeholder--xl {
+  height: 500px;
+  margin: 24px 0;
+}
+
+/* ---- RESULT CTA / CLOSING ---- */
+.cs-result__cta {
+  text-align: center;
+  margin-top: 48px;
+}
+.cs-result__closing {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 24px;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -1002,6 +1194,13 @@ a {
   .about__photo-placeholder {
     aspect-ratio: 1 / 1;
     max-width: 200px;
+  }
+  .cs-screen,
+  .cs-screen--reverse {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    margin-bottom: 64px;
   }
 }
 
