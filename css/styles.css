@@ -83,6 +83,33 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* ---- READING PROGRESS BAR (flowck.html only, via .nav--progress) ---- */
+.nav--progress {
+  border-bottom: none;
+}
+.nav--progress::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) var(--scroll-progress, 0%),
+    rgba(0, 0, 0, 0.06) var(--scroll-progress, 0%)
+  );
+  transition: height 0.2s ease;
+}
+.nav--progress.nav--progress-active::after {
+  height: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav--progress::after {
+    transition: none;
+  }
+}
 .nav__inner {
   display: flex;
   align-items: center;
@@ -159,6 +186,12 @@ a {
   text-transform: uppercase;
   color: var(--text-secondary);
   margin-bottom: 32px;
+}
+.eyebrow--accent {
+  color: var(--accent);
+}
+.eyebrow--dark {
+  color: var(--text);
 }
 .section-label {
   font-size: 38px;
@@ -879,10 +912,6 @@ a {
    ============================================================ */
 .cs-section {
   padding: 120px 0;
-  border-bottom: 1px solid var(--border);
-}
-.cs-section:last-of-type {
-  border-bottom: none;
 }
 
 /* ---- HOOK ---- */
@@ -891,17 +920,24 @@ a {
   text-align: center;
 }
 .cs-hook__title {
-  font-size: clamp(32px, 4.4vw, 59px);
+  font-size: clamp(44px, 7vw, 92px);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -0.03em;
+  color: var(--text);
   margin-bottom: 20px;
 }
 .cs-hook__tagline {
   font-size: 24px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text);
   margin-bottom: 48px;
+}
+.cs-hook__tagline-accent {
+  color: var(--accent);
+}
+.cs-hook__tagline-muted {
+  color: var(--text-secondary);
 }
 .cs-meta {
   display: flex;
@@ -960,13 +996,30 @@ a {
 .cs-hook__paragraph:last-child {
   margin-bottom: 0;
 }
+.cs-hook__list {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0 0 20px 0;
+  padding-left: 24px;
+}
+.cs-hook__list li {
+  margin-bottom: 8px;
+}
+.cs-hook__list li:last-child {
+  margin-bottom: 0;
+}
 
-/* ---- SUB-MOMENTO (Discovery, Benchmark, ...) ---- */
+/* ---- SUB-MOMENTO (Discovery, Design, Build, Result) ---- */
 .cs-subm {
   margin-bottom: 72px;
+  display: flow-root;
 }
 .cs-subm:last-child {
   margin-bottom: 0;
+}
+.cs-subm--tight {
+  margin-bottom: 56px;
 }
 .cs-subm__title {
   font-size: clamp(24px, 2.6vw, 32px);
@@ -976,60 +1029,227 @@ a {
   color: var(--text);
   margin-bottom: 20px;
 }
-.cs-subm__title em {
-  font-style: italic;
+.cs-subm__title strong {
+  font-weight: 700;
+  color: var(--accent);
 }
 .cs-subm__text {
   font-size: 18px;
   line-height: 1.8;
   color: var(--text);
-  max-width: 800px;
+}
+.cs-subm__text + .cs-subm__text {
+  margin-top: 20px;
+}
+.cs-subm__text--intro {
+  margin-bottom: 40px;
+}
+.cs-subm__text + .cs-placeholder,
+.cs-subm__text + .cs-metro,
+.cs-subm__text + .cs-formula,
+.cs-subm__text + .cs-blockcard-demo,
+.cs-subm__text + .cs-pr-wrap {
+  margin-top: 56px;
+}
+.cs-badges + .cs-subm__text,
+.cs-pr-wrap + .cs-subm__text {
+  margin-top: 24px;
+}
+
+/* ---- STAT ROWS + DONUTS (Discovery > encuestas) ---- */
+.cs-stat-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  margin-top: 56px;
+  padding-bottom: 24px;
+  margin-bottom: 56px;
+}
+.cs-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.cs-stat-row--reverse {
+  flex-direction: row-reverse;
+}
+.cs-stat-row__text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: nowrap;
+}
+.cs-stat-row__text strong {
+  font-weight: 700;
+}
+.cs-stat-row__chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.cs-donut__svg {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg);
+}
+.cs-donut__track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.cs-donut__value {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 900ms ease-out;
+}
+.cs-donut__legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.cs-donut__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.cs-donut__legend-label {
+  color: var(--text);
+  font-weight: 500;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-donut__value {
+    transition: none !important;
+  }
+}
+
+/* ---- FORMULA (Discovery > impacto económico) ---- */
+.cs-formula {
+  padding: 0;
+  width: fit-content;
+  max-width: 100%;
+}
+.cs-formula__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.cs-formula__item {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.cs-formula__factor {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.cs-formula__value {
+  font-size: clamp(36px, 4.4vw, 52px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cs-formula__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.cs-formula__symbol {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.cs-formula__factor--result {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px;
+}
+.cs-formula__factor--result .cs-formula__value {
+  font-size: clamp(52px, 6.5vw, 76px);
+  color: var(--accent);
+}
+.cs-formula__label--inline {
+  font-size: 20px;
+}
+.cs-formula__note {
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  opacity: 0;
+}
+
+/* Animación — encadenada sobria, sin rebote, se dispara una vez al entrar en viewport */
+.cs-formula--play .cs-formula__item {
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+.cs-formula--play .cs-formula__item:nth-child(1) { transition-delay: 0ms; }
+.cs-formula--play .cs-formula__item:nth-child(2) { transition-delay: 120ms; }
+.cs-formula--play .cs-formula__item:nth-child(3) { transition-delay: 240ms; }
+.cs-formula--play .cs-formula__item:nth-child(4) { transition-delay: 360ms; }
+.cs-formula--play .cs-formula__item:nth-child(5) { transition-delay: 480ms; }
+.cs-formula--play .cs-formula__item:nth-child(6) { transition-delay: 600ms; }
+.cs-formula--play .cs-formula__item:nth-child(7) { transition-delay: 720ms; }
+.cs-formula--play .cs-formula__item:nth-child(8) { transition-delay: 840ms; }
+.cs-formula--play .cs-formula__item:nth-child(9) { transition-delay: 960ms; }
+.cs-formula--play .cs-formula__note {
+  transition: opacity 500ms ease-out;
+  transition-delay: 2300ms;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-formula__item,
+  .cs-formula__note {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ---- QUOTES ---- */
 .cs-quotes {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  margin: 40px 0 72px;
-  max-width: 800px;
+  align-items: flex-start;
+  gap: 56px;
+  margin: 0 0 128px;
 }
 .cs-quote {
-  border-left: 2px solid var(--border);
-  padding-left: 24px;
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  max-width: 100%;
 }
 .cs-quote__text {
-  font-size: 21px;
+  font-size: 28px;
   font-weight: 500;
-  line-height: 1.5;
+  font-style: italic;
+  line-height: 1.45;
   letter-spacing: -0.01em;
   color: var(--text);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 .cs-quote__cite {
   display: block;
   font-style: normal;
   font-size: 14px;
   color: var(--text-secondary);
-}
-
-/* ---- STAT / MOMENTO DE IMPACTO ---- */
-.cs-stat {
-  text-align: center;
-  padding: 64px 0;
-}
-.cs-stat__number {
-  font-size: clamp(32px, 4.4vw, 59px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.cs-stat__caption {
-  font-size: 14px;
-  color: var(--text-secondary);
-  max-width: 480px;
-  margin: 0 auto;
 }
 
 /* ---- SCREEN (pantalla + mockup + texto) ---- */
@@ -1095,28 +1315,6 @@ a {
   object-fit: cover;
 }
 
-/* ---- DECISION (sub-bloques de Diseño) ---- */
-.cs-decision {
-  margin-bottom: 72px;
-}
-.cs-decision:last-child {
-  margin-bottom: 0;
-}
-.cs-decision__title {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.cs-decision__text {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text);
-  max-width: 800px;
-  margin-bottom: 20px;
-}
-
 /* ---- PLACEHOLDER VISUAL (temporal) ---- */
 .cs-placeholder {
   display: flex;
@@ -1124,6 +1322,7 @@ a {
   justify-content: center;
   text-align: center;
   height: 280px;
+  margin: 24px 0;
   border: 2px dashed var(--border);
   border-radius: var(--radius);
   background: var(--bg-subtle);
@@ -1140,17 +1339,502 @@ a {
   margin: 24px 0;
 }
 
-/* ---- RESULT CTA / CLOSING ---- */
-.cs-result__cta {
-  text-align: center;
-  margin-top: 48px;
+/* ---- BADGES DE ESTADO (fragmento animado, Diseño > sub-bloque 1) ----
+   Colores y forma copiados literalmente de assets/Flowck MVP css/styles.css
+   (.badge y variables --s-*-bg/--s-*-text), solo escalados de tamaño. */
+.cs-badges {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 56px 0;
 }
-.cs-result__closing {
-  text-align: center;
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  opacity: 0;
+}
+.cs-badge--solicitada { background: #EDE9FE; color: #5B21B6; }
+.cs-badge--produccion { background: #FFEDD5; color: #9A3412; }
+.cs-badge--revision    { background: #FEF9C3; color: #854D0E; }
+.cs-badge--aprobada    { background: #DCFCE7; color: #166534; }
+.cs-badge--publicada   { background: #DBEAFE; color: #1D4ED8; }
+
+/* Fase 1 (0%–63% ≈ 480ms de 760ms): entrada + rebote con overshoot.
+   Fase 2 (63%–100% ≈ 280ms): squash-expand — se comprime y se expande antes de asentarse.
+   Opacidad fijada explícitamente en cada paso para garantizar que se queda en 1. */
+@keyframes cs-badge-in-squash {
+  0%   { opacity: 0; transform: translateX(-30px) scale(0.82); }
+  35%  { opacity: 1; transform: translateX(4px) scale(1.09); }
+  47%  { opacity: 1; transform: translateX(-2px) scale(0.96); }
+  63%  { opacity: 1; transform: translateX(0) scale(1); }
+  75%  { opacity: 1; transform: scale(0.92, 1.1); }
+  88%  { opacity: 1; transform: scale(1.16, 0.85); }
+  100% { opacity: 1; transform: scale(1, 1); }
+}
+/* Solo rebote, sin squash — cierre de la cadena (Publicada) */
+@keyframes cs-badge-in {
+  0%   { opacity: 0; transform: translateX(-30px) scale(0.82); }
+  55%  { opacity: 1; transform: translateX(4px) scale(1.08); }
+  78%  { opacity: 1; transform: translateX(-2px) scale(0.97); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+.cs-badges--play .cs-badge:nth-child(1) {
+  animation: cs-badge-in-squash 760ms cubic-bezier(0.22, 1, 0.36, 1) 0ms forwards;
+}
+.cs-badges--play .cs-badge:nth-child(2) {
+  animation: cs-badge-in-squash 760ms cubic-bezier(0.22, 1, 0.36, 1) 600ms forwards;
+}
+.cs-badges--play .cs-badge:nth-child(3) {
+  animation: cs-badge-in-squash 760ms cubic-bezier(0.22, 1, 0.36, 1) 1200ms forwards;
+}
+.cs-badges--play .cs-badge:nth-child(4) {
+  animation: cs-badge-in-squash 760ms cubic-bezier(0.22, 1, 0.36, 1) 1800ms forwards;
+}
+.cs-badges--play .cs-badge:nth-child(5) {
+  animation: cs-badge-in 480ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
+}
+/* Red de seguridad: una vez terminada su animación, el estado final queda
+   fijado de forma incondicional, pase lo que pase con el fill-mode. */
+.cs-badge.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-badge {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- FILA DE TABLA REAL (fragmento animado, Diseño > sub-bloque 2) ----
+   Estilos, tipografía y colores copiados literalmente de assets/Flowck MVP
+   css/styles.css (.pieces-table, .cell-thumb, .cell-name, .cell-pending),
+   escalados ~1.7x de tamaño para protagonismo visual. */
+.cs-pr-wrap {
+  width: fit-content;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E3;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 56px;
+}
+.cs-pr {
+  border-collapse: collapse;
+  background: #FFFFFF;
+}
+.cs-pr th {
+  background: #FFFFFF;
+  padding: 16px 26px;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 400;
+  color: #6B6B6B;
+  border-bottom: 1px solid #E5E5E3;
+  white-space: nowrap;
+}
+.cs-pr td {
+  padding: 16px 26px;
+  vertical-align: middle;
+}
+.cs-pr-thumb {
+  width: 75px;
+  height: 75px;
+  max-width: none;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #F5F5F3;
+  display: block;
+}
+.cs-pr-name {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 25px;
+  color: #3A3A3A;
+  white-space: nowrap;
+}
+.cs-pr-pending {
+  display: inline-block;
+  width: 160px;
+}
+.cs-pr-pending__text {
+  display: inline-block;
   font-size: 22px;
   font-weight: 500;
-  color: var(--text);
-  margin-top: 24px;
+  color: #3A3A3A;
+  transform-origin: left center;
+}
+
+/* Fase 1 — aparición sobria por columnas (fade + slide, sin rebote) */
+.cs-pr-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+@keyframes cs-pr-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cs-pr-fade--in[data-pr-part="header"] {
+  animation: cs-pr-fade-in 400ms ease-out 0ms forwards;
+}
+.cs-pr-fade--in[data-pr-part="thumb"] {
+  animation: cs-pr-fade-in 400ms ease-out 150ms forwards;
+}
+.cs-pr-fade--in[data-pr-part="name"] {
+  animation: cs-pr-fade-in 400ms ease-out 300ms forwards;
+}
+.cs-pr-fade--in[data-pr-part="pending"],
+.cs-pr-fade--in[data-pr-part="status"] {
+  animation: cs-pr-fade-in 400ms ease-out 450ms forwards;
+}
+.cs-pr-fade.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Fase 2 — mutación cíclica del valor "Pendiente de" (JS controla el ciclo) */
+@keyframes cs-pend-grow {
+  from { transform: scale(1); }
+  to   { transform: scale(1.14); }
+}
+@keyframes cs-pend-shrink {
+  from { transform: scale(1.14); }
+  to   { transform: scale(0); }
+}
+@keyframes cs-pend-enter {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.12); }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.cs-pr-pending__text.cs-grow {
+  animation: cs-pend-grow 90ms ease-out forwards;
+}
+.cs-pr-pending__text.cs-shrink {
+  animation: cs-pend-shrink 110ms ease-in forwards;
+}
+.cs-pr-pending__text.cs-enter {
+  animation: cs-pend-enter 380ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-pr-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cs-pr-pending__text {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---- CARD DE BLOQUEO (Diseño > sub-momento 3) ----
+   Recreación completa de .block-card tal cual existe en el producto (Flowck MVP
+   css/styles.css / bloqueos.html): thumbnail, header (nombre + deadline), meta
+   (canal + campaña), motivo del bloqueo, footer (pendiente de / días bloqueada /
+   estado) y botón de resolución. Mismas proporciones que la card real (ratio
+   thumbnail 32%, mismos paddings/gaps/tamaños relativos), escalada ~1.3x —
+   tamaño intermedio entre el producto real y la versión anterior del case study.
+   Badge de estado reutiliza .cs-badge ya existente. */
+.cs-blockcard-demo {
+  width: fit-content;
+  margin-bottom: 56px;
+}
+.cs-blockcard {
+  width: 760px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E3;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.cs-blockcard--visible {
+  animation: cs-blockcard-reveal 450ms ease-out forwards;
+}
+.cs-blockcard.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+@keyframes cs-blockcard-reveal {
+  0%   { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.cs-blockcard__img {
+  width: 32%;
+  min-width: 32%;
+  object-fit: cover;
+  object-position: center;
+  background: #F5F5F3;
+  display: block;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.cs-blockcard__body {
+  flex: 1;
+  min-width: 0;
+  padding: 21px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.cs-blockcard__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cs-blockcard__title {
+  font-size: 17.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1.35;
+  color: #1C1C1E;
+  flex: 1;
+  white-space: nowrap;
+}
+.cs-blockcard__deadline {
+  background: #FEE2E2;
+  color: #DC2626;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.cs-blockcard__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-ch-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.cs-ch-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cs-blockcard__campaign {
+  font-size: 15.5px;
+  color: #6B6B6B;
+}
+.cs-blockcard__reason {
+  background: #FFF5F5;
+  border-radius: 8px;
+  padding: 14px 15.5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #EF4444;
+  opacity: 0;
+  transform: scale(0);
+}
+.cs-blockcard__reason svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #EF4444;
+}
+.cs-blockcard__reason--reveal {
+  animation: cs-blockcard-reason-reveal 1400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cs-blockcard-reason-reveal {
+  0%   { opacity: 0; transform: scale(0); background: #FFF5F5; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  40%  { opacity: 1; transform: scale(1.06); background: #FFE4E4; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.22); }
+  60%  { transform: scale(0.98); background: #FFE4E4; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.22); }
+  75%  { transform: scale(1); background: #FFE4E4; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.22); }
+  100% { transform: scale(1); opacity: 1; background: #FFF5F5; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.cs-blockcard__reason.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+.cs-blockcard__divider {
+  border: none;
+  border-top: 1px solid #E5E5E3;
+  margin: 0;
+}
+.cs-blockcard__footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+.cs-blockcard__footer-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+}
+.cs-blockcard__footer-info .cs-badge {
+  opacity: 1;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.cs-blockcard__info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.cs-blockcard__info-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B6B6B;
+  white-space: nowrap;
+}
+.cs-blockcard__info-value {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: #1C1C1E;
+  white-space: nowrap;
+}
+.cs-blockcard__resolve-btn {
+  width: 100%;
+  background: #F87171;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 13px;
+  transition: background 0.12s;
+}
+.cs-blockcard__resolve-btn:hover {
+  background: #EF4444;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-blockcard {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cs-blockcard--visible {
+    animation: none !important;
+  }
+  .cs-blockcard__reason {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cs-blockcard__reason--reveal {
+    animation: none !important;
+  }
+}
+
+/* ---- METRO LINE (Discovery > sub-momento 1: línea de fases con paradas) ---- */
+.cs-metro {
+  position: relative;
+  width: fit-content;
+  padding: 34px 0 0;
+  margin-bottom: 56px;
+}
+.cs-metro__competitors {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+.cs-metro--label-play .cs-metro__competitors {
+  opacity: 1;
+}
+.cs-metro__track {
+  display: flex;
+  align-items: center;
+}
+.cs-metro__node {
+  flex-shrink: 0;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 2px dashed var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 400ms ease-out, transform 400ms ease-out,
+    border-color 400ms ease-out, color 400ms ease-out;
+}
+.cs-metro__connector {
+  flex-shrink: 0;
+  width: 76px;
+  height: 2px;
+  background: var(--border);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms ease-out, background-color 400ms ease-out;
+}
+
+/* Fase 1 — la línea se dibuja y los nodos aparecen, sin rebote */
+.cs-metro--play .cs-metro__node {
+  opacity: 1;
+  transform: none;
+}
+.cs-metro--play .cs-metro__connector {
+  transform: scaleX(1);
+}
+
+/* Fase 2 — Revisión y Aprobación se acentúan: mismo troquelado, borde y texto en verde */
+.cs-metro--accent-play .cs-metro__node--accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.cs-metro--accent-play .cs-metro__connector--accent {
+  background: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-metro__node,
+  .cs-metro__connector,
+  .cs-metro__competitors {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- RESULT CTA / CLOSING ---- */
+.cs-result__cta {
+  text-align: left;
+  margin-top: 48px;
 }
 
 /* ============================================================

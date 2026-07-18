@@ -13,7 +13,7 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav nav--progress" id="nav">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">
         <img src="assets/images/logo.png" alt="RB" class="nav__logo-img">
@@ -22,7 +22,7 @@
       <div class="nav__links">
         <a href="index.html#projects" class="nav__link">Trabajo</a>
         <a href="index.html#about" class="nav__link">Sobre mí</a>
-        <a href="index.html#contact" class="btn btn--nav">Hablemos</a>
+        <a href="#contact" class="btn btn--nav">Hablemos</a>
       </div>
     </div>
   </nav>
@@ -34,12 +34,12 @@
       <div class="container">
         <div class="cs-hook__inner">
           <h1 class="cs-hook__title reveal">Flowck</h1>
-          <p class="cs-hook__tagline reveal">Todo a la vista, adiós al caos</p>
+          <p class="cs-hook__tagline reveal"><span class="cs-hook__tagline-muted">Todo a la vista,</span> <span class="cs-hook__tagline-accent">adiós al caos</span></p>
 
           <div class="cs-meta reveal">
             <div class="cs-meta__item">
               <span class="cs-meta__label">Tipo</span>
-              <span class="cs-meta__value">Caso de diseño de producto en solitario</span>
+              <span class="cs-meta__value">Diseño y construcción en solitario</span>
             </div>
             <div class="cs-meta__item">
               <span class="cs-meta__label">Función</span>
@@ -56,9 +56,14 @@
           </div>
 
           <div class="cs-hook__body reveal">
-            <p class="cs-hook__paragraph">Flowck nació de un problema que se repetía cuando trabajaba en marketing. Me ocupaba de sacar el contenido adelante junto a otros compañeros, pero pronto vi que no nos frenaba el trabajo, sino cómo lo coordinábamos: todo avanzaba a ciegas, sin que nadie tuviera una imagen clara de lo que pasaba con cada pieza. Esa falta de claridad nos afectaba a todos, desde los creadores hasta los managers, y es el sistema que usan la mayoría de equipos pequeños.</p>
-            <p class="cs-hook__paragraph">He creado una herramienta que centraliza la revisión y el contexto de cada pieza, lo cual deja siempre claro el estado del contenido, quién tiene que moverse en ese punto y qué lo frena. Esto acaba directamente con la ansiedad de sentir ese descontrol y falta de visibilidad constante.</p>
-            <a href="https://flowck.vercel.app" target="_blank" rel="noopener" class="card__btn card__btn--outline">Demo en vivo ↗</a>
+            <p class="cs-hook__paragraph">Flowck nació de la frustración que sentí cuando trabajé en marketing. Me ocupaba de coordinar el contenido que publicábamos y a menudo me topaba con los mismos obstáculos:</p>
+            <ul class="cs-hook__list">
+              <li>No sabía si el trabajo se había empezado ya o por qué no estaba listo aún</li>
+              <li>El feedback de revisión llegaba tarde</li>
+              <li>Buscar el contexto de cada pieza era tedioso</li>
+            </ul>
+            <p class="cs-hook__paragraph">He creado una herramienta para equipos pequeños de marketing, que acaba con el estrés que produce la falta de visibilidad operativa. Funciona a través de un sistema que centraliza todo lo que un equipo necesita saber sobre su contenido. Sin perseguir. Sin preguntar.</p>
+            <a href="https://flowck.vercel.app" target="_blank" rel="noopener" class="card__btn card__btn--primary">Demo en vivo ↗</a>
           </div>
         </div>
       </div>
@@ -67,11 +72,31 @@
     <!-- DISCOVERY Y RESEARCH -->
     <section class="cs-section" id="discovery">
       <div class="container">
-        <p class="section-label reveal">Discovery y Research</p>
+        <p class="eyebrow eyebrow--dark reveal">RESEARCH Y DISCOVERY</p>
 
         <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Escuché a mi público <em>y se repetían los mismos obstáculos.</em></h3>
-          <p class="cs-subm__text">Hablé con perfiles que viven este proceso cada día: managers de marketing, responsables de contenido y creativos. Analizando lo que me contaban, tres patrones aparecían en casi todas las conversaciones. El estado de cada pieza era invisible, así que avanzar dependía de perseguir a la gente. El feedback se repartía entre tantos canales que seguir el hilo se volvía imposible. Y con frecuencia nadie sabía a quién le tocaba actuar a continuación.</p>
+          <h3 class="cs-subm__title">Conocía mi problema, pero quería <strong>ver si ya se resolvía</strong></h3>
+          <p class="cs-subm__text">Encontré los productos más potentes, Filestage, Ziflow y Wrike. Se trata de suites grandes, densas y caras, que resuelven bastante bien una parte del problema, la revisión y aprobación de piezas de marketing. Pero sabía de primera mano que desde que se piden hasta que se publican hay varias fases que deben pasar, y es justo ahí donde encontré el nicho de mercado. Ninguna plataforma daba visibilidad al ciclo de vida completo del contenido ni a todo su contexto.</p>
+          <div class="cs-metro">
+            <span class="cs-metro__competitors">Filestage · Ziflow · Wrike</span>
+            <div class="cs-metro__track">
+              <div class="cs-metro__node">Petición</div>
+              <div class="cs-metro__connector"></div>
+              <div class="cs-metro__node">Creación</div>
+              <div class="cs-metro__connector"></div>
+              <div class="cs-metro__node cs-metro__node--accent">Revisión</div>
+              <div class="cs-metro__connector cs-metro__connector--accent"></div>
+              <div class="cs-metro__node cs-metro__node--accent">Aprobación</div>
+              <div class="cs-metro__connector"></div>
+              <div class="cs-metro__node">Publicación</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-subm cs-subm--tight reveal">
+          <h3 class="cs-subm__title">Después hice mis hipótesis y me detuve a <strong>escuchar a quien lo vive</strong></h3>
+          <p class="cs-subm__text">Era consciente de las limitaciones que tiene trabajar en un equipo pequeño. No había dinero para herramientas caras como las que encontré, así que utilizábamos métodos convencionales y poco prácticos. Daba por hecho que los equipos de baja envergadura eran los que más necesitaban un sistema para ser más eficientes, pero primero quise confirmarlo.</p>
+          <p class="cs-subm__text">Tras realizar entrevistas a diferentes perfiles que pertenecían a equipos pequeños, me di cuenta de que todo se reducía a la falta de visibilidad. Estas fueron algunas de las citas que encarrilaron el enfoque de mi solución:</p>
         </div>
 
         <div class="cs-quotes reveal">
@@ -85,45 +110,103 @@
           </blockquote>
           <blockquote class="cs-quote">
             <p class="cs-quote__text">"Añadiría no tener la instrucción clara de a quién le toca actuar."</p>
-            <cite class="cs-quote__cite">Responsable de contenido</cite>
+            <cite class="cs-quote__cite">Content Manager</cite>
           </blockquote>
         </div>
 
         <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Entonces entendí <em>cuál era el verdadero problema.</em></h3>
-          <p class="cs-subm__text">Cada obstáculo parecía distinto, pero todos apuntaban a la misma raíz. El problema de fondo no era la carga de trabajo ni la falta de ganas: era que nadie podía ver en qué punto estaba cada pieza, quién la tenía en ese momento y qué la estaba frenando. Sin esa visibilidad, cada equipo improvisaba su forma de perseguir la información. Esa era la verdadera brecha: no un problema de esfuerzo, sino de falta de contexto compartido sobre el ciclo completo de cada pieza.</p>
+          <h3 class="cs-subm__title">No era suficiente con eso, quería <strong>ver qué decían los números</strong></h3>
+          <p class="cs-subm__text">Para sacar datos numéricos que contrastasen mis conclusiones, también envié varias encuestas:</p>
+
+          <div class="cs-stat-rows">
+            <div class="cs-stat-row">
+              <div class="cs-stat-row__text">
+                <p>El <strong>67%</strong> no tenía claro con frecuencia quién debía actuar a continuación</p>
+              </div>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="81.09 263.89" stroke-dashoffset="-176.81"></circle>
+                    <circle class="cs-donut__value" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="93.09"></circle>
+                  </svg>
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__dot"></span>
+                  <span class="cs-donut__legend-label">Frecuentemente</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-stat-row cs-stat-row--reverse">
+              <div class="cs-stat-row__text">
+                <p>El <strong>72%</strong> siempre perdía tiempo en recopilar el feedback de revisión de cada pieza</p>
+              </div>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="67.89 263.89" stroke-dashoffset="-190.00"></circle>
+                    <circle class="cs-donut__value" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="79.89"></circle>
+                  </svg>
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__dot"></span>
+                  <span class="cs-donut__legend-label">Siempre</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-stat-row">
+              <div class="cs-stat-row__text">
+                <p>El <strong>88%</strong> no tenía claro con frecuencia qué frenaba el avance de las piezas</p>
+              </div>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="25.67 263.89" stroke-dashoffset="-232.23"></circle>
+                    <circle class="cs-donut__value" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="37.67"></circle>
+                  </svg>
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__dot"></span>
+                  <span class="cs-donut__legend-label">Frecuentemente</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Un problema operativo <em>con un coste de negocio real.</em></h3>
-          <p class="cs-subm__text">Aunque parezca un problema de organización, su efecto final es económico. Basta una estimación conservadora para verlo: si un equipo de 5 personas recupera solo 5 horas semanales de seguimiento y coordinación, valoradas en 30 €/hora de coste interno, se está hablando de unos 7.800 € al año. Y eso sin contar el impacto de publicar antes o de no perder una ventana de campaña.</p>
-        </div>
-
-        <div class="cs-stat reveal">
-          <div class="cs-stat__number">~7.800 €/año</div>
-          <p class="cs-stat__caption">Coste estimado de la coordinación manual en un equipo de 5 personas.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BENCHMARK -->
-    <section class="cs-section" id="benchmark">
-      <div class="container">
-        <p class="section-label reveal">Benchmark</p>
-
-        <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Analicé lo que ya existía <em>y dónde se quedaba corto.</em></h3>
-          <p class="cs-subm__text">El problema estaba claro, así que estudié las herramientas que los equipos ya usan para gestionar sus piezas. Existe toda una categoría dedicada a la revisión y aprobación de contenido —Filestage, Wrike y similares—, lo que confirmaba que el problema era real y estaba validado por el mercado. Pero al analizarlas de cerca, encontré el mismo límite en casi todas.</p>
-        </div>
-
-        <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Resolvían la revisión, <em>no la coordinación.</em></h3>
-          <p class="cs-subm__text">Estas herramientas están centradas en el asset: comentar sobre un archivo, comparar versiones, aprobar por fases. Lo hacen bien. Pero el problema que yo había detectado no era revisar un archivo, sino coordinar el ciclo completo de una pieza: saber en qué estado está, quién la tiene, qué la bloquea y si de verdad está lista para publicarse. Además, muchas son densas y caras, pensadas para estructuras grandes, no para equipos pequeños que necesitan algo ligero.</p>
-        </div>
-
-        <div class="cs-subm reveal">
-          <h3 class="cs-subm__title">Ahí estaba <em>el hueco.</em></h3>
-          <p class="cs-subm__text">La oportunidad no era construir otro revisor de archivos, sino una herramienta pensada desde la lógica del marketing, donde la unidad principal no fuera el archivo, sino la pieza con todo su contexto: su estado, su responsable, su bloqueo y su preparación para publicarse. Un espacio ligero, visual y centrado en el flujo operativo completo. Eso era Flowck.</p>
+          <h3 class="cs-subm__title">Por último, encontré el <strong>impacto negativo en el negocio</strong></h3>
+          <p class="cs-subm__text">Aunque parezca un problema puramente operativo, su efecto final es económico. Basta una estimación conservadora para verlo: con que un equipo de 5 personas dedique solo 5 horas semanales al seguimiento y la coordinación, valoradas en 30 €/hora de coste interno, ya está perdiendo 7.800 € al año. En este escenario ni siquiera tenemos en cuenta el impacto negativo de publicar tarde a causa de la baja eficiencia.</p>
+          <div class="cs-formula">
+            <div class="cs-formula__row">
+              <div class="cs-formula__item cs-formula__factor">
+                <span class="cs-formula__value">5</span>
+                <span class="cs-formula__label">personas</span>
+              </div>
+              <span class="cs-formula__item cs-formula__symbol">×</span>
+              <div class="cs-formula__item cs-formula__factor">
+                <span class="cs-formula__value">5</span>
+                <span class="cs-formula__label">horas/semana</span>
+              </div>
+              <span class="cs-formula__item cs-formula__symbol">×</span>
+              <div class="cs-formula__item cs-formula__factor">
+                <span class="cs-formula__value">30 €</span>
+                <span class="cs-formula__label">coste/hora</span>
+              </div>
+              <span class="cs-formula__item cs-formula__symbol">×</span>
+              <div class="cs-formula__item cs-formula__factor">
+                <span class="cs-formula__value">52</span>
+                <span class="cs-formula__label">semanas</span>
+              </div>
+              <span class="cs-formula__item cs-formula__symbol">=</span>
+              <div class="cs-formula__item cs-formula__factor cs-formula__factor--result">
+                <span class="cs-formula__value cs-formula__value--result"><span class="cs-formula__counter" data-target="7800">0</span> €</span>
+                <span class="cs-formula__label cs-formula__label--inline">al año</span>
+              </div>
+            </div>
+            <p class="cs-formula__note">Si son 10 horas semanales: 15.600 € al año.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -131,33 +214,105 @@
     <!-- DISEÑO EN FIGMA -->
     <section class="cs-section" id="design">
       <div class="container">
-        <p class="section-label reveal">Diseño en Figma</p>
+        <p class="eyebrow eyebrow--dark reveal">DECISIONES DE DISEÑO</p>
 
-        <h3 class="cs-subm__title reveal">Diseñé las pantallas clave <em>para dar claridad y orden.</em></h3>
-        <p class="cs-subm__text reveal">Antes de tocar una sola pantalla, definí cómo debía funcionar cada flujo y qué información era imprescindible en cada momento. Todo el diseño partió de un principio: que lo esencial se entendiera de un vistazo, sin tener que buscar.</p>
+        <p class="cs-subm__text cs-subm__text--intro reveal">Una vez identifiqué los problemas reales que tenían los equipos pequeños de marketing, comencé a construir Flowck. Su mayor ventaja es que resuelve los puntos de dolor sin que se deba preguntar nada, lo cual aumenta la eficiencia exponencialmente:</p>
 
-        <div class="cs-decision reveal">
-          <h4 class="cs-decision__title">Estado visible al instante</h4>
-          <p class="cs-decision__text">Cada pieza muestra su estado con un color, para saber en qué punto está sin leer nada.</p>
-          <div class="cs-placeholder">[ Fragmento: badges de estado ]</div>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">¿Cómo saber <strong>si el trabajo se ha empezado</strong> o <strong>está listo</strong>?</h3>
+          <p class="cs-subm__text">Mediante estados que representen las fases del ciclo completo del contenido, no solo si una pieza está aprobada o no. De esta manera, todo el departamento tiene claro en qué punto se encuentra cada una, y hay un seguimiento desde que se solicitan hasta que se publican.</p>
+          <div class="cs-badges">
+            <span class="cs-badge cs-badge--solicitada">Solicitada</span>
+            <span class="cs-badge cs-badge--produccion">En producción</span>
+            <span class="cs-badge cs-badge--revision">En revisión</span>
+            <span class="cs-badge cs-badge--aprobada">Aprobada</span>
+            <span class="cs-badge cs-badge--publicada">Publicada</span>
+          </div>
         </div>
 
-        <div class="cs-decision reveal">
-          <h4 class="cs-decision__title">Siempre se sabe de quién depende</h4>
-          <p class="cs-decision__text">El campo "Pendiente de" deja claro quién tiene que mover ficha en cada momento.</p>
-          <div class="cs-placeholder">[ Fragmento: columna Pendiente de ]</div>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">¿Cómo tener claro <strong>quién debe actuar</strong> en todo momento?</h3>
+          <p class="cs-subm__text">Mediante un campo llamado "Pendiente de". Hace visible quién tiene que moverse en cada fase del ciclo de vida del contenido, para avanzar hacia el objetivo final: la publicación.</p>
+          <div class="cs-pr-wrap">
+            <table class="cs-pr">
+              <thead>
+                <tr>
+                  <th class="cs-pr-col-img cs-pr-fade" data-pr-part="header"></th>
+                  <th class="cs-pr-col-name cs-pr-fade" data-pr-part="header">Nombre</th>
+                  <th class="cs-pr-col-pend cs-pr-fade" data-pr-part="header">Pendiente de</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cs-pr-col-img">
+                    <img src="assets/images/imagen-7.png" alt="" class="cs-pr-thumb cs-pr-fade" data-pr-part="thumb">
+                  </td>
+                  <td class="cs-pr-col-name">
+                    <span class="cs-pr-name cs-pr-fade" data-pr-part="name">Reel de lanzamiento smartband</span>
+                  </td>
+                  <td class="cs-pr-col-pend">
+                    <span class="cs-pr-pending cs-pr-fade" data-pr-part="pending">
+                      <span class="cs-pr-pending__text">Julia B.</span>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div class="cs-decision reveal">
-          <h4 class="cs-decision__title">Lo urgente, en su propio espacio</h4>
-          <p class="cs-decision__text">Los bloqueos tienen pantalla propia, para que lo que frena una pieza no quede enterrado.</p>
-          <div class="cs-placeholder">[ Fragmento: card de bloqueo ]</div>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">¿Cómo saber <strong>por qué el trabajo está parado</strong>?</h3>
+          <p class="cs-subm__text">Mediante una sección de producto dedicada a lo más urgente: desbloquear el contenido que está parado. Así lo que lo frena nunca es un enigma y se puede atacar el problema rápidamente.</p>
+          <div class="cs-blockcard-demo">
+            <div class="cs-blockcard">
+              <img class="cs-blockcard__img" src="assets/images/imagen-1.png" alt="">
+              <div class="cs-blockcard__body">
+                <div class="cs-blockcard__header">
+                  <div class="cs-blockcard__title">Cartel Summer Drop — colección de accesorios</div>
+                  <span class="cs-blockcard__deadline">20 jul</span>
+                </div>
+                <div class="cs-blockcard__meta">
+                  <span class="cs-ch-icon" title="Instagram">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077" fill="#FF0069"/></svg>
+                  </span>
+                  <span class="cs-blockcard__campaign">Verano 2025</span>
+                </div>
+                <div class="cs-blockcard__reason">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                    <path d="M12 9v4"></path>
+                    <path d="M12 17h.01"></path>
+                  </svg>
+                  <span>Pendiente de aprobación del cliente para los copies finales antes de pasar a producción.</span>
+                </div>
+                <div class="cs-blockcard__footer">
+                  <hr class="cs-blockcard__divider">
+                  <div class="cs-blockcard__footer-info">
+                    <div class="cs-blockcard__info-item">
+                      <span class="cs-blockcard__info-label">Pendiente de</span>
+                      <span class="cs-blockcard__info-value">Cliente</span>
+                    </div>
+                    <div class="cs-blockcard__info-item">
+                      <span class="cs-blockcard__info-label">Días bloqueada</span>
+                      <span class="cs-blockcard__info-value">3 días</span>
+                    </div>
+                    <span class="cs-badge cs-badge--revision">En revisión</span>
+                  </div>
+                  <hr class="cs-blockcard__divider">
+                  <button class="cs-blockcard__resolve-btn" type="button">Marcar como resuelto</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="cs-decision reveal">
-          <h4 class="cs-decision__title">Todo el contexto de una pieza, reunido</h4>
-          <p class="cs-decision__text">El detalle de cada pieza ordena la información en tres zonas: contexto, contenido y comentarios.</p>
-          <div class="cs-placeholder">[ Fragmento: detalle de pieza ]</div>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">¿Cómo dejar de perder tiempo en <strong>recopilar el feedback de revisión</strong>?</h3>
+          <p class="cs-subm__text">Unificando la parte visual y escrita. Sea por el canal que sea, el contenido suele componerse por una imagen/vídeo y un texto. Se complementan entre sí. Analizando a la competencia, me di cuenta de que solo resolvían la revisión y aprobación de la parte visual, pero la escrita seguía dispersa entre canales de comunicación.</p>
+          <div class="cs-placeholder">[ Animación: imagen + texto detalle de pieza ]</div>
+          <p class="cs-subm__text">Llevando esa idea un paso más allá, pensé en las agencias de marketing. Crean contenido para otras empresas, así que también cuenta la opinión del cliente. Flowck reúne la voz del equipo y la del cliente junto al contenido.</p>
+          <div class="cs-placeholder">[ Animación: enlace de cliente copiado ]</div>
         </div>
       </div>
     </section>
@@ -165,32 +320,52 @@
     <!-- CONSTRUCCIÓN CON IA -->
     <section class="cs-section" id="build">
       <div class="container">
-        <p class="section-label reveal">Construcción con IA</p>
+        <p class="eyebrow eyebrow--dark reveal">CONSTRUCCIÓN CON IA</p>
 
-        <h3 class="cs-subm__title reveal">Del diseño al producto real, <em>construido con IA.</em></h3>
-        <p class="cs-subm__text reveal">No usé la IA como una sola herramienta, sino como un sistema de herramientas especializadas, una por cada fase del proceso. Así pasé de la idea al producto en producción con autonomía y rapidez.</p>
+        <p class="cs-subm__text cs-subm__text--intro reveal">No usé una sola herramienta, sino un conjunto de ellas. Cada una me ayudaba a avanzar más rápido en cada fase del proceso.</p>
 
-        <div class="cs-placeholder cs-placeholder--lg reveal">[ Diagrama: herramientas de IA por fase — Research / Entrevistas y encuestas / Diseño y prototipo / Lanzamiento ]</div>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">De las pantallas estáticas <strong>al código</strong></h3>
+          <p class="cs-subm__text">Mi método consistió en crear mi versión en Figma mediante las tres pantallas principales de mi producto, para volcarlas en Claude Code como referencias.</p>
+        </div>
 
-        <p class="cs-subm__text reveal">Con Claude Code pasé del diseño al código iterando pantalla a pantalla, y subí el proyecto a producción con GitHub y Vercel. El resultado no es un prototipo: es una herramienta real, funcionando.</p>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Del código <strong>al producto real</strong></h3>
+          <p class="cs-subm__text">Luego iteré cada detalle bajo mi criterio, y subí el proyecto a producción con GitHub y Vercel. Quería tener algo que probar, fiel al enfoque, no simples pantallas estáticas.</p>
+        </div>
+
+        <div class="cs-placeholder cs-placeholder--lg reveal">[ Diagrama: herramientas de IA por fase ]</div>
       </div>
     </section>
 
     <!-- RESULTADO -->
     <section class="cs-section" id="result">
       <div class="container">
-        <p class="section-label reveal">Resultado</p>
+        <p class="eyebrow eyebrow--dark reveal">RESULTADO</p>
 
-        <h3 class="cs-subm__title reveal">De un problema real <em>a un producto en producción.</em></h3>
-        <p class="cs-subm__text reveal">Lo que empezó como el caos de coordinar piezas entre mil canales es hoy una herramienta que funciona de verdad. Flowck reúne el ciclo completo de cada pieza en un solo lugar: su estado, su responsable, lo que la bloquea y si está lista para publicarse.</p>
-
-        <div class="cs-placeholder cs-placeholder--xl reveal">[ Captura final del producto en producción — pantalla principal ]</div>
-
-        <div class="cs-result__cta reveal">
-          <a href="https://flowck.vercel.app" target="_blank" rel="noopener" class="card__btn card__btn--primary">Ver Flowck en vivo ↗</a>
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">El resumen de <strong>mi solución en una imagen</strong></h3>
+          <p class="cs-subm__text">El problema real era la falta de visibilidad sobre el ciclo de vida de cada pieza de marketing. Es por ello que la Home de Flowck debía ubicar rápidamente, capturando el máximo contexto operativo posible.</p>
         </div>
 
-        <p class="cs-result__closing reveal">Diseñado y construido desde cero. En producción.</p>
+        <div class="cs-placeholder cs-placeholder--xl reveal">[ Pantallazo sección Piezas ]</div>
+
+        <div class="cs-result__cta reveal">
+          <a href="https://flowck.vercel.app" target="_blank" rel="noopener" class="card__btn card__btn--primary">Demo en vivo ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="contact__title reveal">Contacto</h2>
+        <p class="contact__sub reveal">Si buscas a alguien que diseñe para vender, hablemos.</p>
+        <div class="contact__row reveal">
+          <a href="mailto:baldovi.ruben@gmail.com" class="contact__item">baldovi.ruben@gmail.com</a>
+          <span class="contact__sep">|</span>
+          <a href="https://www.linkedin.com/in/rub%C3%A9n-l%C3%B3pez-baldov%C3%AD-9379b819b/" target="_blank" rel="noopener" class="contact__item">LinkedIn</a>
+        </div>
       </div>
     </section>
 
