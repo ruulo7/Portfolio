@@ -282,6 +282,149 @@ window.addEventListener('scroll', () => {
   });
 }());
 
+// Detalle de pieza de Diseño — la imagen entra desde la izquierda y, un beat
+// después, el copy entra desde la derecha. Se dispara una sola vez.
+(function () {
+  const demos = document.querySelectorAll('.cs-detail-demo');
+  if (!demos.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  demos.forEach(demo => {
+    if (reduceMotion) {
+      demo.classList.add('cs-detail-demo--img-play', 'cs-detail-demo--copy-play');
+      return;
+    }
+
+    const detailObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        demo.classList.add('cs-detail-demo--img-play');
+        setTimeout(() => demo.classList.add('cs-detail-demo--copy-play'), 1000);
+        detailObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    detailObserver.observe(demo);
+  });
+}());
+
+// Sidebar de comentarios de Diseño — aparece el cuadro (solo título) y un
+// segundo después llegan los comentarios uno a uno. Se dispara una sola vez
+// al entrar en viewport.
+(function () {
+  const wraps = document.querySelectorAll('.cs-comments-demo-wrap');
+  if (!wraps.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    wraps.forEach(el => {
+      el.classList.add('cs-comments-demo-wrap--in');
+      el.querySelector('.cs-comments-demo').classList.add('cs-comments-demo--items-play');
+    });
+    return;
+  }
+
+  wraps.forEach(wrap => {
+    const comments = wrap.querySelector('.cs-comments-demo');
+    const items = comments.querySelectorAll('.cs-comment-item');
+
+    const WRAP_REVEAL_DURATION = 500;
+    const PAUSE_BEFORE_ITEMS = 1000;
+    const ITEM_STAGGER = 450;
+
+    items.forEach((item, i) => {
+      item.style.transitionDelay = (i * ITEM_STAGGER) + 'ms';
+    });
+
+    function playSequence() {
+      // Fase 1: aparece el cuadro (solo título)
+      wrap.classList.add('cs-comments-demo-wrap--in');
+
+      // Fase 2: los comentarios llegan uno a uno y quedan estáticos
+      setTimeout(() => {
+        comments.classList.add('cs-comments-demo--items-play');
+      }, WRAP_REVEAL_DURATION + PAUSE_BEFORE_ITEMS);
+    }
+
+    const commentsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        playSequence();
+        commentsObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    commentsObserver.observe(wrap);
+  });
+}());
+
+// Pantallazo final de Result — fade + rise sobrio, sin rebote. Una sola vez.
+(function () {
+  const shots = document.querySelectorAll('.cs-result-shot');
+  if (!shots.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    shots.forEach(el => el.classList.add('cs-result-shot--in'));
+    return;
+  }
+
+  const shotObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('cs-result-shot--in');
+      shotObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  shots.forEach(el => shotObserver.observe(el));
+}());
+
+// Diagrama de herramientas de Build — las cards crecen desde la nada con
+// rebote, en orden (01 → 02 → 03), 0.5s de diferencia entre cada una. Una
+// sola vez al entrar en viewport.
+(function () {
+  const diagrams = document.querySelectorAll('.cs-tools-diagram');
+  if (!diagrams.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    diagrams.forEach(el => {
+      el.querySelectorAll('.cs-tools-phase').forEach(phase => {
+        phase.style.opacity = '1';
+        phase.style.transform = 'none';
+      });
+    });
+    return;
+  }
+
+  const PHASE_STAGGER = 500;
+
+  diagrams.forEach(diagram => {
+    const phases = diagram.querySelectorAll('.cs-tools-phase');
+    phases.forEach((phase, i) => {
+      phase.style.animationDelay = (i * PHASE_STAGGER) + 'ms';
+    });
+
+    const diagramObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        phases.forEach(phase => {
+          phase.classList.add('cs-tools-phase--grow');
+          phase.addEventListener('animationend', () => phase.classList.add('is-settled'), { once: true });
+        });
+        diagramObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    diagramObserver.observe(diagram);
+  });
+}());
+
 // Card de bloqueo de Diseño — la card aparece sin el motivo, el motivo surge con
 // rebote, destella una vez y todo queda fijo. Se dispara una sola vez.
 (function () {

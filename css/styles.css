@@ -1048,12 +1048,18 @@ a {
 .cs-subm__text + .cs-metro,
 .cs-subm__text + .cs-formula,
 .cs-subm__text + .cs-blockcard-demo,
-.cs-subm__text + .cs-pr-wrap {
+.cs-subm__text + .cs-pr-wrap,
+.cs-subm__text + .cs-detail-demo,
+.cs-subm__text + .cs-comments-demo-wrap,
+.cs-subm__text + .cs-result-shot {
   margin-top: 56px;
 }
 .cs-badges + .cs-subm__text,
 .cs-pr-wrap + .cs-subm__text {
   margin-top: 24px;
+}
+.cs-detail-demo + .cs-subm__text {
+  margin-top: 128px;
 }
 
 /* ---- STAT ROWS + DONUTS (Discovery > encuestas) ---- */
@@ -1537,6 +1543,176 @@ a {
   }
 }
 
+/* ---- SIDEBAR DE COMENTARIOS (Diseño > sub-momento 4) ----
+   Colores/tipos reales del panel oscuro de detalle de pieza (Flowck MVP
+   .detail-comments, --sidebar-bg, --border-dark, --text-on-dark*), con
+   border-radius añadido (token del sitio) ya que aquí es un bloque
+   independiente, no un panel de layout. Comentarios propios de "Cartel
+   Summer Drop", avatares con el color real por autor. Sin acento. Aparece
+   con el mismo gesto sobrio de fade + slide que el resto de visuales. */
+.cs-comments-demo-wrap {
+  width: fit-content;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.cs-comments-demo-wrap--in {
+  opacity: 1;
+  transform: none;
+}
+.cs-comments-demo {
+  display: flex;
+  width: 280px;
+  background: #1C1C1E;
+  border-radius: var(--radius);
+  overflow: hidden;
+  flex-direction: column;
+}
+.cs-comments-demo__header {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid #2C2C2E;
+  font-size: 15px;
+  font-weight: 700;
+  color: #F0F0F0;
+}
+.cs-comments-demo__count {
+  font-size: 15px;
+  font-weight: 700;
+  color: #8A8A8E;
+}
+.cs-comments-demo__list {
+  padding: 14px 0;
+}
+.cs-comment-item {
+  padding: 10px 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+.cs-comments-demo--items-play .cs-comment-item {
+  opacity: 1;
+  transform: none;
+}
+.cs-comment-item__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cs-comment-item__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.cs-comment-item__author {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #F0F0F0;
+}
+.cs-comment-item__role {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #C7C7CC;
+}
+.cs-comment-item__text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #8A8A8E;
+  padding-left: 32px;
+  margin-top: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-comments-demo-wrap {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cs-comment-item {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- DETALLE DE PIEZA: imagen + copy (Diseño > sub-momento 4) ----
+   Recreación de la vista de detalle de pieza del producto real (Flowck MVP
+   detalle.html / css/styles.css): imagen (border-radius 8px, object-fit
+   contain, fondo #F5F5F3) + cuadro de copy (fondo #FFFFFF, border 0.5px
+   #E5E5E3, radius 8px, etiqueta "COPY" y texto), emparejados a la misma
+   altura como en el producto, a una proporción más compacta. Sin color de
+   acento. Pieza: "Open Day" (assets/images/imagen-3.png). */
+.cs-detail-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 20px;
+  width: 680px;
+  max-width: 100%;
+}
+.cs-detail-demo__img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #F5F5F3;
+  border-radius: 8px;
+  display: block;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.cs-detail-demo__copy {
+  align-self: stretch;
+  border: 0.5px solid #E5E5E3;
+  border-radius: 8px;
+  padding: 16px 16px 16px 22px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.cs-detail-demo__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6B6B6B;
+  margin-bottom: 8px;
+}
+.cs-detail-demo__text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1C1C1E;
+}
+.cs-detail-demo--img-play .cs-detail-demo__img {
+  opacity: 1;
+  transform: none;
+}
+.cs-detail-demo--copy-play .cs-detail-demo__copy {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-detail-demo__img,
+  .cs-detail-demo__copy {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ---- CARD DE BLOQUEO (Diseño > sub-momento 3) ----
    Recreación completa de .block-card tal cual existe en el producto (Flowck MVP
    css/styles.css / bloqueos.html): thumbnail, header (nombre + deadline), meta
@@ -1825,6 +2001,174 @@ a {
   .cs-metro__node,
   .cs-metro__connector,
   .cs-metro__competitors {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- DIAGRAMA DE HERRAMIENTAS (Build > herramientas de IA por fase) ----
+   Workflow sobrio: 3 fases numeradas, cada una con sus herramientas
+   (logo real + nombre debajo). Sin círculos de colores de fondo, solo
+   tokens del sitio. Se anima fase por fase (fade + slide, sin rebote). */
+.cs-subm + .cs-tools-diagram {
+  margin-top: 56px;
+}
+.cs-tools-diagram {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+.cs-tools-phase {
+  width: fit-content;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  opacity: 0;
+  transform: scale(0);
+}
+.cs-tools-phase--grow {
+  animation: cs-tools-phase-grow 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cs-tools-phase-grow {
+  0%   { opacity: 0; transform: scale(0); }
+  55%  { opacity: 1; transform: scale(1.06); }
+  78%  { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+/* Red de seguridad: fija el estado final de forma incondicional, pase lo
+   que pase con el fill-mode de la animación (mismo patrón que .is-settled
+   ya usado en el resto del sitio para esta clase de bug). */
+.cs-tools-phase.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+.cs-tools-phase__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.cs-tools-phase__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 600;
+}
+.cs-tools-phase__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.cs-tools-phase__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.cs-tools-group + .cs-tools-group {
+  padding-left: 40px;
+  border-left: 1px solid var(--border);
+}
+.cs-tools-group__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.cs-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+}
+.cs-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.cs-tool__icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+.cs-tool__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-tools-phase {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- PANTALLAZO FINAL (Result > mockup de navegador) ----
+   Captura de la Home de Flowck presentada como pieza protagonista del
+   cierre, dentro de un mockup de ventana hecho con CSS (barra superior +
+   tres círculos tipo semáforo) y una sombra sutil. Solo tokens del sitio,
+   salvo los colores convencionales de los círculos de la barra (rojo/
+   ámbar/verde), que son la iconografía estándar de ventana de navegador. */
+.cs-result-shot {
+  width: 100%;
+}
+.cs-browser-mockup {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+.cs-result-shot--in .cs-browser-mockup {
+  opacity: 1;
+  transform: none;
+}
+.cs-browser-mockup__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+.cs-browser-mockup__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.cs-browser-mockup__dot--red { background: #FF5F57; }
+.cs-browser-mockup__dot--yellow { background: #FEBC2E; }
+.cs-browser-mockup__dot--green { background: #28C840; }
+.cs-browser-mockup__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-browser-mockup {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;

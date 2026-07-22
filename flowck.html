@@ -310,9 +310,44 @@
         <div class="cs-subm reveal">
           <h3 class="cs-subm__title">¿Cómo dejar de perder tiempo en <strong>recopilar el feedback de revisión</strong>?</h3>
           <p class="cs-subm__text">Unificando la parte visual y escrita. Sea por el canal que sea, el contenido suele componerse por una imagen/vídeo y un texto. Se complementan entre sí. Analizando a la competencia, me di cuenta de que solo resolvían la revisión y aprobación de la parte visual, pero la escrita seguía dispersa entre canales de comunicación.</p>
-          <div class="cs-placeholder">[ Animación: imagen + texto detalle de pieza ]</div>
+          <div class="cs-detail-demo">
+            <img class="cs-detail-demo__img" src="assets/images/imagen-3.png" alt="">
+            <div class="cs-detail-demo__copy">
+              <div class="cs-detail-demo__label">Copy</div>
+              <div class="cs-detail-demo__text">La puerta está abierta. Bienvenido a nuestra comunidad — conoce al equipo, descubre el espacio y empieza a hacer cosas increíbles desde el primer día. Everyone welcome.</div>
+            </div>
+          </div>
           <p class="cs-subm__text">Llevando esa idea un paso más allá, pensé en las agencias de marketing. Crean contenido para otras empresas, así que también cuenta la opinión del cliente. Flowck reúne la voz del equipo y la del cliente junto al contenido.</p>
-          <div class="cs-placeholder">[ Animación: enlace de cliente copiado ]</div>
+          <div class="cs-comments-demo-wrap">
+            <aside class="cs-comments-demo">
+              <div class="cs-comments-demo__header">Comentarios <span class="cs-comments-demo__count">3</span></div>
+              <div class="cs-comments-demo__list">
+                <div class="cs-comment-item">
+                  <div class="cs-comment-item__header">
+                    <div class="cs-comment-item__avatar" style="background:#3A7BD5">MG</div>
+                    <span class="cs-comment-item__author">María G.</span>
+                    <span class="cs-comment-item__role">Manager</span>
+                  </div>
+                  <div class="cs-comment-item__text">Me gusta mucho la creatividad, aunque unas palmeras le darían el toque veraniego.</div>
+                </div>
+                <div class="cs-comment-item">
+                  <div class="cs-comment-item__header">
+                    <div class="cs-comment-item__avatar" style="background:#6B6B6B">CL</div>
+                    <span class="cs-comment-item__author">Cliente</span>
+                  </div>
+                  <div class="cs-comment-item__text">Para que el texto encaje mejor con la imagen, haría referencia a las cosas de playa que aparecen. Por lo demás me gusta mucho.</div>
+                </div>
+                <div class="cs-comment-item">
+                  <div class="cs-comment-item__header">
+                    <div class="cs-comment-item__avatar" style="background:#059669">CR</div>
+                    <span class="cs-comment-item__author">Carlos R.</span>
+                    <span class="cs-comment-item__role">Producción</span>
+                  </div>
+                  <div class="cs-comment-item__text">¡Cambios realizados! ¿Qué os parece?</div>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
@@ -334,7 +369,84 @@
           <p class="cs-subm__text">Luego iteré cada detalle bajo mi criterio, y subí el proyecto a producción con GitHub y Vercel. Quería tener algo que probar, fiel al enfoque, no simples pantallas estáticas.</p>
         </div>
 
-        <div class="cs-placeholder cs-placeholder--lg reveal">[ Diagrama: herramientas de IA por fase ]</div>
+        <div class="cs-tools-diagram">
+          <div class="cs-tools-phase">
+            <div class="cs-tools-phase__header">
+              <span class="cs-tools-phase__number">01</span>
+              <span class="cs-tools-phase__title">Research</span>
+            </div>
+            <div class="cs-tools-phase__groups">
+              <div class="cs-tools-group">
+                <span class="cs-tools-group__label">Benchmark</span>
+                <div class="cs-tools-row">
+                  <div class="cs-tool">
+                    <img class="cs-tool__icon" src="assets/logos/openai.svg" alt="">
+                    <span class="cs-tool__label">ChatGPT</span>
+                  </div>
+                  <div class="cs-tool">
+                    <img class="cs-tool__icon" src="assets/logos/claude.svg" alt="">
+                    <span class="cs-tool__label">Claude</span>
+                  </div>
+                  <div class="cs-tool">
+                    <img class="cs-tool__icon" src="assets/logos/figma.svg" alt="">
+                    <span class="cs-tool__label">Figma</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-tools-group">
+                <span class="cs-tools-group__label">Entrevistas y encuestas</span>
+                <div class="cs-tools-row">
+                  <div class="cs-tool">
+                    <img class="cs-tool__icon" src="assets/logos/granola.svg" alt="">
+                    <span class="cs-tool__label">Granola</span>
+                  </div>
+                  <div class="cs-tool">
+                    <img class="cs-tool__icon" src="assets/logos/tally.svg" alt="">
+                    <span class="cs-tool__label">Tally</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-tools-phase">
+            <div class="cs-tools-phase__header">
+              <span class="cs-tools-phase__number">02</span>
+              <span class="cs-tools-phase__title">Diseño y prototipado</span>
+            </div>
+            <div class="cs-tools-row">
+              <div class="cs-tool">
+                <img class="cs-tool__icon" src="assets/logos/figma.svg" alt="">
+                <span class="cs-tool__label">Figma</span>
+              </div>
+              <div class="cs-tool">
+                <img class="cs-tool__icon" src="assets/logos/claude.svg" alt="">
+                <span class="cs-tool__label">Claude / Claude Code</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-tools-phase">
+            <div class="cs-tools-phase__header">
+              <span class="cs-tools-phase__number">03</span>
+              <span class="cs-tools-phase__title">Lanzamiento</span>
+            </div>
+            <div class="cs-tools-row">
+              <div class="cs-tool">
+                <img class="cs-tool__icon" src="assets/logos/claude.svg" alt="">
+                <span class="cs-tool__label">Claude Code</span>
+              </div>
+              <div class="cs-tool">
+                <img class="cs-tool__icon" src="assets/logos/github.svg" alt="">
+                <span class="cs-tool__label">GitHub</span>
+              </div>
+              <div class="cs-tool">
+                <img class="cs-tool__icon" src="assets/logos/vercel.svg" alt="">
+                <span class="cs-tool__label">Vercel</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -348,7 +460,16 @@
           <p class="cs-subm__text">El problema real era la falta de visibilidad sobre el ciclo de vida de cada pieza de marketing. Es por ello que la Home de Flowck debía ubicar rápidamente, capturando el máximo contexto operativo posible.</p>
         </div>
 
-        <div class="cs-placeholder cs-placeholder--xl reveal">[ Pantallazo sección Piezas ]</div>
+        <div class="cs-result-shot">
+          <div class="cs-browser-mockup">
+            <div class="cs-browser-mockup__bar">
+              <span class="cs-browser-mockup__dot cs-browser-mockup__dot--red"></span>
+              <span class="cs-browser-mockup__dot cs-browser-mockup__dot--yellow"></span>
+              <span class="cs-browser-mockup__dot cs-browser-mockup__dot--green"></span>
+            </div>
+            <img class="cs-browser-mockup__img" src="assets/images/Captura Inicio Flowck.png" alt="Home de Flowck">
+          </div>
+        </div>
 
         <div class="cs-result__cta reveal">
           <a href="https://flowck.vercel.app" target="_blank" rel="noopener" class="card__btn card__btn--primary">Demo en vivo ↗</a>
