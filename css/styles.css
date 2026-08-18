@@ -27,15 +27,15 @@ html {
 }
 
 /* Chrome / Edge / Safari */
-html::-webkit-scrollbar        { width: 4px; }
+html::-webkit-scrollbar        { width: 8px; }
 html::-webkit-scrollbar-track  { background: transparent; }
-html::-webkit-scrollbar-thumb  { background: rgba(0, 0, 0, 0.08); border-radius: 999px; }
-html::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.14); }
+html::-webkit-scrollbar-thumb  { background: rgba(0, 0, 0, 0.18); border-radius: 999px; }
+html::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.26); }
 html::-webkit-scrollbar-button { display: none; }
 
 /* Firefox — sólo donde no hay soporte webkit */
 @supports not selector(::-webkit-scrollbar) {
-  html { scrollbar-width: thin; scrollbar-color: #E5E5E5 transparent; }
+  html { scrollbar-width: thin; scrollbar-color: #B0B0B0 transparent; }
 }
 body {
   font-family: var(--font);
@@ -249,7 +249,7 @@ a {
 .hero__cta {
   font-size: 17px;
   font-weight: 500;
-  color: #111111;
+  color: var(--accent);
   transition: opacity 0.15s;
 }
 .hero__cta:hover {
@@ -751,6 +751,18 @@ a {
   text-overflow: ellipsis;
 }
 
+/* Orris thumbnail */
+.card__thumb--orris {
+  background: #F3F4F6;
+}
+.card__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 /* Placeholder thumbnail */
 .card__thumb--placeholder {
   background: #F3F4F6;
@@ -871,6 +883,27 @@ a {
   padding: 136px 0 128px;
   text-align: center;
 }
+
+/* ============================================================
+   SELLO DE IDENTIDAD (Hero + hooks de case studies)
+   ============================================================ */
+.hero,
+#hook {
+  position: relative;
+}
+.sello {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+@media (max-width: 600px) {
+  .sello { display: none; }
+}
 .contact__title {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 700;
@@ -912,6 +945,7 @@ a {
    ============================================================ */
 .cs-section {
   padding: 120px 0;
+  scroll-margin-top: var(--nav-h);
 }
 
 /* ---- HOOK ---- */
@@ -932,6 +966,21 @@ a {
   font-weight: 500;
   color: var(--text);
   margin-bottom: 48px;
+}
+.cs-hook__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+  margin-top: 28px;
+}
+/* Iguala la altura de "Demo en vivo" a la del botón "Hablemos" del Hook de
+   la Home (49.2px), solo en estos dos puntos del case study — no se toca
+   el .card__btn genérico, usado también en las cards de la Home. */
+.cs-hook__actions .card__btn--primary,
+.cs-result__cta .card__btn--primary {
+  padding-top: 13.4px;
+  padding-bottom: 13.4px;
 }
 .cs-hook__tagline-accent {
   color: var(--accent);
@@ -956,7 +1005,7 @@ a {
   gap: 6px;
   flex-shrink: 0;
   text-align: left;
-  padding: 0 30px;
+  padding: 0 48px;
   border-left: 1px solid var(--border);
 }
 .cs-meta__item:first-child {
@@ -989,9 +1038,6 @@ a {
   line-height: 1.8;
   color: var(--text);
   margin-bottom: 20px;
-}
-.cs-hook__body .card__btn {
-  margin-top: 12px;
 }
 .cs-hook__paragraph:last-child {
   margin-bottom: 0;
@@ -1054,12 +1100,17 @@ a {
 .cs-subm__text + .cs-result-shot {
   margin-top: 56px;
 }
+/* La frase que introduce una lista deja el mismo hueco que hay entre los
+   puntos de esa lista (li margin-bottom), para un ritmo vertical uniforme. */
+.cs-subm__text + .cs-hook__list {
+  margin-top: 8px;
+}
 .cs-badges + .cs-subm__text,
 .cs-pr-wrap + .cs-subm__text {
   margin-top: 24px;
 }
 .cs-detail-demo + .cs-subm__text {
-  margin-top: 128px;
+  margin-top: 42px;
 }
 
 /* ---- STAT ROWS + DONUTS (Discovery > encuestas) ---- */
@@ -1121,17 +1172,849 @@ a {
   font-size: 13px;
   white-space: nowrap;
 }
-.cs-donut__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
+.cs-donut__legend-label {
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.cs-donut__figure {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.cs-stat-source {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 56px;
+}
+.cs-stat-rows + .cs-stat-source {
+  margin-top: -32px;
+}
+.cs-stat-cols {
+  display: flex;
+  justify-content: flex-start;
+  gap: 140px;
+  margin-top: 56px;
+}
+.cs-stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+}
+.cs-stat-col__label {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text);
+  text-align: left;
+}
+.cs-stat-cols + .cs-stat-source {
+  margin-top: 40px;
+}
+
+/* ---- DONUT TRIO (Investigación > sub-momento 3: preocupaciones al buscar piso) ---- */
+.cs-donuts-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 56px;
+  margin-bottom: 40px;
+}
+.cs-donut-trio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 64px;
+  margin-bottom: 56px;
+}
+.cs-donut-trio__item--center {
+  transform: translateY(-16px);
+}
+.cs-donut__svg--lg {
+  width: 156px;
+  height: 156px;
+}
+.cs-donut__figure--lg {
+  font-size: 36px;
+}
+.cs-donut__value--muted {
+  stroke: var(--text-secondary);
+}
+.cs-donut__figure--muted {
+  color: var(--text-secondary);
+}
+.cs-stat-col__label--muted {
+  color: var(--text-secondary);
+}
+.cs-donut__figure--accent {
+  color: var(--accent);
+}
+.cs-stat-col__label--accent {
+  color: var(--accent);
+}
+.cs-donut {
+  position: relative;
+}
+/* El SVG inline deja un hueco de línea base bajo el círculo, lo que hace que el
+   wrapper sea más alto que el donut y descentre el icono. Con flex el wrapper
+   ajusta exactamente al SVG. Sólo en el trío, para no alterar Flowck. */
+.cs-donut-trio .cs-donut,
+.cs-stat-cols .cs-donut,
+.cs-stat-rows .cs-donut {
+  display: flex;
+}
+.cs-donut__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  pointer-events: none;
+}
+.cs-donut__icon--lg {
+  width: 78px;
+  height: 78px;
+}
+/* Glifos verticales (una figura) rinden ópticamente más grandes que los
+   horizontales al mismo tamaño de caja: se compensa reduciendo la caja. */
+.cs-donut__icon--sm {
+  width: 52px;
+  height: 52px;
+}
+
+/* ---- ECUACIÓN VISUAL (Estrategia > sub-momento 1) ----
+   Fila de iconos y signos que se lee como una suma sin resultado claro.
+   Todo en gris; sin acento. Entrada en scroll heredada del .reveal del
+   .cs-subm contenedor, como el resto de ilustraciones. */
+.cs-equation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.cs-equation__icon {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  display: block;
   flex-shrink: 0;
 }
-.cs-donut__legend-label {
-  color: var(--text);
+.cs-equation__sign {
+  font-size: 40px;
   font-weight: 500;
+  line-height: 1;
+  color: var(--text-secondary);
 }
+.cs-equation__sign--accent {
+  color: var(--accent);
+}
+.cs-equation__result {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ---- DESCARTADO / SOLUCIÓN (Estrategia > sub-momento 2) ----
+   Dos grupos de iconos con su etiqueta debajo, sin caja ni fondo. La fila de
+   iconos tiene altura fija para que ambos grupos midan lo mismo y las
+   etiquetas queden a la misma altura, tengan uno o dos iconos. Entrada en
+   scroll heredada del .reveal del .cs-subm, como el resto de ilustraciones. */
+.cs-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 140px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.cs-choice__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.cs-choice__icons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 24px;
+  height: 104px;
+}
+/* Mismo tamaño que .cs-equation__icon */
+.cs-choice__icon {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  display: block;
+}
+/* Mismo tamaño que .cs-equation__result */
+.cs-choice__label {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.cs-choice__label--accent {
+  color: var(--accent);
+}
+
+/* ---- DIAGRAMA DE ARQUITECTURA (UX Design > sub-momento 1) ----
+   Nodo central "Producto" y las cuatro secciones colgando de él. Todo en
+   línea continua sin relleno, en el mismo gris que .cs-choice__label
+   ("Descartado"). Entrada en scroll con el .reveal propio del contenedor. */
+.cs-arch {
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+/* El viewBox está recortado al contenido real (sin aire vacío alrededor), para
+   que el trazo más a la izquierda caiga justo en el margen del texto. El ancho
+   mantiene la misma escala de dibujo que antes del recorte. */
+.cs-arch__svg {
+  width: 465px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.cs-arch__shape {
+  fill: none;
+  stroke: #C0C2C6;
+  stroke-width: 2;
+}
+.cs-arch__line {
+  stroke: #C0C2C6;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.cs-arch__text {
+  fill: #C0C2C6;
+  stroke: none;
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 600;
+}
+/* El nodo central lleva el gris fuerte de .cs-choice__label ("Descartado") */
+.cs-arch__text--center {
+  font-size: 26px;
+  fill: var(--text-secondary);
+}
+/* Las cuatro secciones se acentúan; el nodo central y las líneas siguen en gris */
+.cs-arch__shape--accent {
+  stroke: var(--accent);
+}
+.cs-arch__text--accent {
+  fill: var(--accent);
+}
+/* Entrada en secuencia: primero "Producto", y encadenados después los cuatro
+   nodos acentuados con su línea (ver IIFE de .cs-arch en main.js). */
+.cs-arch__center {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+.cs-arch--play .cs-arch__center {
+  opacity: 1;
+}
+.cs-arch__node {
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+.cs-arch--nodes-play .cs-arch__node {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-arch__center,
+  .cs-arch__node {
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ---- DIAGRAMA DE FLUJO (UX Design > sub-momento 2) ----
+   Bifurcación de la resolución, de izquierda a derecha. Formas huecas y
+   flechas con punta, todo en el mismo gris que .cs-choice__label
+   ("Descartado"). El viewBox va recortado al contenido para que el trazo
+   más a la izquierda caiga en el margen del texto. Entrada en scroll con
+   el .reveal propio del contenedor. */
+.cs-flow {
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+/* Los dos flujos comparten plantilla y escala: ambos viewBox miden 298 de alto
+   y sus anchos en px van en la misma proporción (~0.786 px por unidad), así que
+   rombos, esferas, rectángulos y flechas salen del mismo tamaño en los dos.
+   Solo cambia el ancho total, por el número de etapas de cada uno. */
+.cs-flow__svg {
+  width: 801px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* Flujo con una etapa más: se ensancha para que el texto conserve el mismo
+   tamaño aparente que en el diagrama del sub-momento 2 */
+.cs-flow__svg--wide {
+  width: 993px;
+}
+/* Jerarquía de color: el andamiaje (bordes, líneas y puntas de flecha) va en el
+   gris claro de los iconos; los textos de los nodos, en el gris fuerte; y lo
+   acentuado, en verde (ver los modificadores --accent más abajo). */
+.cs-flow__shape {
+  fill: none;
+  stroke: #C0C2C6;
+  stroke-width: 2;
+}
+.cs-flow__line {
+  fill: none;
+  stroke: #C0C2C6;
+  stroke-width: 2;
+}
+.cs-flow__arrowhead {
+  fill: #C0C2C6;
+}
+.cs-flow__text {
+  fill: var(--text-secondary);
+  stroke: none;
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 600;
+}
+.cs-flow__branch {
+  fill: var(--text-secondary);
+  stroke: none;
+  font-family: var(--font);
+  font-size: 19px;
+  font-weight: 600;
+}
+/* Las dos ramas se acentúan; nodos inicial y final, rombo, flechas y líneas
+   se quedan en gris */
+.cs-flow__shape--accent {
+  stroke: var(--accent);
+}
+.cs-flow__text--accent {
+  fill: var(--accent);
+}
+/* Entrada en dos tiempos: primero todo el andamiaje gris, y 2s después las
+   ramas acentuadas en verde (ver IIFE de .cs-flow en main.js). */
+.cs-flow__base,
+.cs-flow__accent-group {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+.cs-flow--play .cs-flow__base {
+  opacity: 1;
+}
+.cs-flow--accent-play .cs-flow__accent-group {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-flow__base,
+  .cs-flow__accent-group {
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ---- IMAGEN SUELTA (Branding + UI Design > apertura) ----
+   PNG con transparencia colocado directamente sobre el fondo de la página:
+   sin fondo, borde, sombra ni radio, para que se vea la página a través de la
+   zona exterior y de los huecos de las asas. */
+.cs-figure {
+  margin-top: 44px;
+  /* El PNG del jarrón tiene ~6.5% de margen transparente en su base (no toca
+     el borde de la imagen), así que se descuenta aquí para que el hueco
+     percibido hasta el título siguiente iguale el resto del bloque (128px). */
+  margin-bottom: 28px;
+}
+.cs-figure__img {
+  display: block;
+  width: 420px;
+  max-width: 100%;
+  height: auto;
+  /* El PNG tiene ~9.73% de margen transparente simétrico a los lados (foto de
+     producto centrada); se compensa aquí para que el jarrón visible, no el
+     borde del archivo, quede a ras del margen del texto. */
+  margin-left: -40.9px;
+}
+
+/* ---- PALETA + TIPOGRAFÍA (Branding + UI Design > sub-momento 2) ----
+   Dos zonas centradas entre sí. Los PNG se colocan sin recortar ni recolorear;
+   como las paletas traen mucho lienzo transparente alrededor (la tira ocupa
+   solo del 35% al 61% de su alto y arranca al 2.9% de su ancho), se compensa
+   con márgenes negativos: nada se recorta, solo se solapa zona transparente. */
+.cs-brand {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.cs-brand__label {
+  display: block;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+/* El gap iguala el alto de la columna al de la ilustración de tipografía,
+   separando más las paletas en vez de estirarlas */
+.cs-brand__palettes {
+  display: flex;
+  flex-direction: column;
+  gap: 57.2px;
+  flex-shrink: 0;
+}
+/* Compensa el sangrado del glifo (la tinta arranca 1px a la derecha de la caja
+   de texto) para que la etiqueta case con el borde nítido de la banda */
+.cs-brand__palettes .cs-brand__label {
+  margin-left: -1px;
+}
+.cs-brand__item {
+  display: flex;
+  flex-direction: column;
+}
+.cs-brand__palette {
+  display: block;
+  width: 460px;
+  height: auto;
+  /* recorta ópticamente el lienzo transparente: arriba, abajo e izquierda */
+  margin: -96px 0 -112px -13px;
+}
+.cs-brand__type {
+  flex-shrink: 0;
+}
+/* Se escala por alto en vez de por ancho, para igualar el alto de la columna
+   de paletas (446.8px) manteniendo su proporción original */
+.cs-brand__type-img {
+  display: block;
+  width: auto;
+  height: 446.8px;
+}
+
+/* ---- VOTACIÓN (Branding + UI Design > sub-momento 3) ----
+   Bucle continuo de 11.9s, sin pausa entre una vuelta y la siguiente:
+   1. Entran las tres propuestas encadenadas (0 – 1s).
+   2. Se mantienen ~3s (1s – 4s).
+   3. Se pulsa la de Marta: encoge + velo (4s – 4.5s).
+   4. En el instante exacto en que suelta (4.5s): Alex y Luis se desvanecen
+      encogiéndose (hasta 4.9s) mientras, en el mismo hueco de Marta, aparece
+      de golpe "seleccionada 1" (corte seco, sin transición).
+   5. Flipbook seco en ese mismo hueco: seleccionada 1 (1s) → 2 (1s) → 3.
+   6. Seleccionada 3 se mantiene 1s (6.5s – 7.5s).
+   7. Seleccionada 3 se encoge y desvanece mientras "cierre de acuerdo" crece
+      desde 0 hasta su tamaño, alineada a la izquierda (7.5s – 7.9s).
+   8. Se mantiene 4s (7.9s – 11.9s) y el ciclo vuelve a 0% sin pausa.
+   Todos los tiempos van en porcentaje de los 11.9s para que las ocho pistas
+   no se desincronicen entre sí. */
+.cs-vote {
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.cs-vote__set {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 480px;
+  max-width: 100%;
+}
+.cs-vote__card {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cs-vote__press {
+  position: relative;
+  transform-origin: center;
+}
+/* Velo del pulsado: la misma card convertida en silueta blanca, así el velo
+   respeta las esquinas redondeadas y la transparencia del PNG */
+.cs-vote__veil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) invert(1);
+  opacity: 0;
+  pointer-events: none;
+}
+/* Las tres "seleccionada" ocupan el mismo hueco que Marta, apiladas encima;
+   solo su propia animación decide cuál se ve, sin mover nada */
+.cs-vote__sel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.cs-vote__sel--3 { transform-origin: center; }
+/* La card de cierre es un formato distinto (modal), no una fila más: su borde
+   izquierdo queda al mismo margen que el resto de cards y crece desde ahí,
+   centrada solo en vertical sobre el hueco de Marta, libre de desbordar por
+   encima y por debajo sin desplazar el resto de cards */
+/* El punto de referencia sigue siendo el hueco de Marta (top:50% de .cs-vote__press,
+   fila 2 de 3), pero en vez de centrar la card por su propia altura (-50%, que la
+   hacía sobresalir ~20px por encima del final del párrafo, comiéndose parte de su
+   margen) se usa un desplazamiento fijo calculado para que su borde superior, ya
+   crecida del todo, quede exactamente a la altura de la primera fila de cards
+   ("Card Alex"): mismo hueco bajo el párrafo que respetan las propuestas. */
+.cs-vote__close {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 300px;
+  max-width: 62vw;
+  height: auto;
+  opacity: 0;
+  transform: translateY(-174.64px) scale(0);
+}
+/* Estado de reposo antes del disparo: igual que el fotograma 0% de su propia
+   animación, para que no haya salto visual al arrancar */
+.cs-vote__card {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* El ciclo solo se anima una vez que .cs-vote--play se añade por scroll (ver
+   main.js); antes de eso todo queda en su estado de reposo de arriba */
+.cs-vote--play .cs-vote__press       { animation: cs-vote-press 11.9s linear infinite; }
+.cs-vote--play .cs-vote__veil        { animation: cs-vote-veil 11.9s linear infinite; }
+.cs-vote--play .cs-vote__sel--1      { animation: cs-vote-sel-1 11.9s linear infinite; }
+.cs-vote--play .cs-vote__sel--2      { animation: cs-vote-sel-2 11.9s linear infinite; }
+.cs-vote--play .cs-vote__sel--3      { animation: cs-vote-sel-3 11.9s linear infinite; }
+.cs-vote--play .cs-vote__close       { animation: cs-vote-close 11.9s linear infinite; }
+.cs-vote--play .cs-vote__card--a     { animation: cs-vote-card-a 11.9s linear infinite; }
+.cs-vote--play .cs-vote__card--b     { animation: cs-vote-card-b 11.9s linear infinite; }
+.cs-vote--play .cs-vote__card--c     { animation: cs-vote-card-c 11.9s linear infinite; }
+
+/* 1. Entrada encadenada de las tres propuestas */
+@keyframes cs-vote-card-a {
+  0%     { opacity: 0; transform: translateY(12px); }
+  3.36%  { opacity: 1; transform: none; }
+  37.81% { opacity: 1; transform: none; }
+  41.18%, 100% { opacity: 0; transform: scale(0.85); }
+}
+@keyframes cs-vote-card-b {
+  0%, 1.68% { opacity: 0; transform: translateY(12px); }
+  5.04%     { opacity: 1; transform: none; }
+  37.8%     { opacity: 1; transform: none; }
+  37.81%, 100% { opacity: 0; transform: none; }
+}
+@keyframes cs-vote-card-c {
+  0%, 3.36% { opacity: 0; transform: translateY(12px); }
+  6.72%     { opacity: 1; transform: none; }
+  37.81%    { opacity: 1; transform: none; }
+  41.18%, 100% { opacity: 0; transform: scale(0.85); }
+}
+
+/* 3. Pulsado: encoge, se mantiene pulsada y suelta — gesto rápido */
+@keyframes cs-vote-press {
+  0%, 33.61%   { transform: scale(1); }
+  35.29%, 36.64% { transform: scale(0.965); }
+  37.81%, 100% { transform: scale(1); }
+}
+@keyframes cs-vote-veil {
+  0%, 33.61%   { opacity: 0; }
+  35.29%, 36.64% { opacity: 0.38; }
+  37.81%, 100% { opacity: 0; }
+}
+
+/* 5. Flipbook seco: cada seleccionada aparece y desaparece de golpe, sin
+   movimiento ni fundido, tomando el relevo justo cuando acaba la anterior */
+@keyframes cs-vote-sel-1 {
+  0%, 37.8%    { opacity: 0; }
+  37.81%, 46.21% { opacity: 1; }
+  46.22%, 100% { opacity: 0; }
+}
+@keyframes cs-vote-sel-2 {
+  0%, 46.21%   { opacity: 0; }
+  46.22%, 54.61% { opacity: 1; }
+  54.62%, 100% { opacity: 0; }
+}
+/* 6-7. Seleccionada 3 se mantiene y luego SÍ sale con encogido + fundido,
+   justo cuando "cierre de acuerdo" empieza a crecer */
+@keyframes cs-vote-sel-3 {
+  0%, 54.61%   { opacity: 0; transform: scale(1); }
+  54.62%, 63.03% { opacity: 1; transform: scale(1); }
+  66.39%, 100% { opacity: 0; transform: scale(0.85); }
+}
+
+/* 7-8. Cierre de acuerdo: crece desde su posición (alineada a la izquierda)
+   mientras seleccionada 3 se encoge, se mantiene 4s y el propio 0% del
+   siguiente ciclo la apaga de golpe, así el corte es instantáneo también en
+   el reinicio */
+@keyframes cs-vote-close {
+  0%, 63.03%  { opacity: 0; transform: translateY(-174.64px) scale(0); }
+  66.39%, 100% { opacity: 1; transform: translateY(-174.64px) scale(1); }
+}
+
+/* ---- REDISEÑO DE LA HOME (UI Design > sub-momento 4) ----
+   Antes → flecha → después. Se dispara una sola vez al entrar en scroll y
+   queda fija; no es un bucle. Home 1 surge creciendo desde pequeña; la
+   flecha y Home 2 solo aparecen (fundido), sin escala, para diferenciar el
+   protagonismo del primer elemento del resto de la secuencia. */
+.cs-redesign {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.cs-redesign__img {
+  display: block;
+  width: 420px;
+  height: auto;
+}
+/* Botones modalidades tiene otra proporción (más estrecha) que Home: a este
+   ancho igualan el alto medio (≈371px) de las imágenes del apartado 4 */
+.cs-redesign__img--sm {
+  width: 330px;
+}
+.cs-redesign__img--1 {
+  opacity: 0;
+  transform: scale(0.35);
+  transform-origin: center;
+}
+.cs-redesign__img--2 {
+  opacity: 0;
+}
+.cs-redesign__arrow {
+  width: 72px;
+  height: 27px;
+  flex-shrink: 0;
+  opacity: 0;
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes cs-redesign-grow {
+  0%   { opacity: 0; transform: scale(0.35); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes cs-redesign-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.cs-redesign--play .cs-redesign__img--1 {
+  animation: cs-redesign-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0s forwards;
+}
+.cs-redesign--play .cs-redesign__arrow {
+  animation: cs-redesign-fade 0.4s ease-out 2s forwards;
+}
+.cs-redesign--play .cs-redesign__img--2 {
+  animation: cs-redesign-fade 0.4s ease-out 3s forwards;
+}
+/* Fija el estado final de forma incondicional, mismo patrón que el resto de
+   animaciones "play once" del sitio (cs-badge, cs-tools-phase, etc.) */
+.cs-redesign__img.is-settled,
+.cs-redesign__arrow.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-redesign__img,
+  .cs-redesign__arrow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- PANTALLAS FINALES (UI Design > sub-momento 5) ----
+   Las tres pantallas resultado, en fila, alineadas por el borde superior; la
+   más larga cuelga por debajo sin recortarse. Mismo ancho, mismo radius,
+   mismo borde. Entran encadenadas de izquierda a derecha reutilizando el
+   mismo keyframe de crecimiento (cs-redesign-grow) y los mismos tiempos
+   (0s, 2s, 3s) que la ilustración "imagen → flecha → imagen" del bloque. */
+.cs-screens {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-top: 56px;
+  /* Sin margin-bottom: al ser el último elemento del bloque, la pantalla más
+     larga sobresale de la fila y ese margen se sumaba al padding-bottom fijo
+     del .cs-section, dejando 56px más de aire que entre el resto de bloques. */
+  margin-bottom: 0;
+}
+/* flex:1 con la misma base reparte el ancho completo del contenido en tres
+   partes iguales; min-width:0 evita que la intrínseca de la imagen empuje
+   la columna más allá de su reparto */
+.cs-screens__item {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 14px;
+}
+.cs-screens__label {
+  display: block;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+/* CAMINOS y ACUERDOS aparecen junto a su pantalla, no con el resto al inicio;
+   HOME no lleva esta regla y permanece visible desde el arranque. */
+.cs-screens__item:nth-child(2) .cs-screens__label,
+.cs-screens__item:nth-child(3) .cs-screens__label {
+  opacity: 0;
+}
+.cs-screens--play .cs-screens__item:nth-child(2) .cs-screens__label {
+  animation: cs-redesign-fade 0.4s ease-out 2s forwards;
+}
+.cs-screens--play .cs-screens__item:nth-child(3) .cs-screens__label {
+  animation: cs-redesign-fade 0.4s ease-out 3s forwards;
+}
+.cs-screens__label.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-screens__label {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+.cs-screens__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #EFEFEF;
+  border-radius: 16px;
+  opacity: 0;
+  transform: scale(0.35);
+  transform-origin: center;
+}
+.cs-screens--play .cs-screens__item:nth-child(1) .cs-screens__img {
+  animation: cs-redesign-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0s forwards;
+}
+.cs-screens--play .cs-screens__item:nth-child(2) .cs-screens__img {
+  animation: cs-redesign-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) 2s forwards;
+}
+.cs-screens--play .cs-screens__item:nth-child(3) .cs-screens__img {
+  animation: cs-redesign-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+}
+.cs-screens__img.is-settled {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-screens__img {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-vote__card,
+  .cs-vote__press,
+  .cs-vote__veil,
+  .cs-vote__sel,
+  .cs-vote__close {
+    animation: none !important;
+  }
+  .cs-vote__card { opacity: 1; transform: none; }
+  .cs-vote__veil { opacity: 0; }
+  .cs-vote__sel,
+  .cs-vote__close {
+    display: none;
+  }
+}
+
+/* ---- PERSONAS + JOURNEY (Investigación > sub-momento 2: user personas y sus fases clave) ---- */
+.cs-personas {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 64px;
+  margin-top: 56px;
+}
+.cs-persona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.cs-persona__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.cs-persona__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.cs-journey {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 56px;
+}
+.cs-journey__step {
+  flex: 1;
+  min-width: 0;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 400ms ease-out, transform 400ms ease-out,
+    border-color 400ms ease-out, border-style 0s, color 400ms ease-out;
+}
+/* Fase 1 — entran uno a uno, todos troquelados en gris (igual que .cs-metro) */
+.cs-journey--play .cs-journey__step {
+  opacity: 1;
+  transform: none;
+}
+/* Fase 2 — los puntos de dolor se acentúan: huecos, stroke sólido verde y
+   texto verde, igual que los nodos destacados de .cs-metro */
+.cs-journey--accent-play .cs-journey__step--accent {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-journey__step {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+.cs-journey__number {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.cs-journey__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cs-donut__value {
     transition: none !important;
@@ -1237,7 +2120,7 @@ a {
   margin: 0 0 128px;
 }
 .cs-quote {
-  border: 1.5px solid var(--accent);
+  border: 2.5px solid var(--accent);
   border-radius: var(--radius);
   padding: 36px 40px;
   max-width: 100%;
@@ -1955,6 +2838,7 @@ a {
   height: 104px;
   border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -1969,6 +2853,12 @@ a {
   transform: scale(0.85);
   transition: opacity 400ms ease-out, transform 400ms ease-out,
     border-color 400ms ease-out, color 400ms ease-out;
+}
+.cs-metro__node-number {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 3px;
 }
 .cs-metro__connector {
   flex-shrink: 0;
@@ -1989,8 +2879,10 @@ a {
   transform: scaleX(1);
 }
 
-/* Fase 2 — Revisión y Aprobación se acentúan: mismo troquelado, borde y texto en verde */
+/* Fase 2 — Revisión y Aprobación se acentúan: línea continua (no troquelada),
+   borde y texto en verde, igual que los pasos destacados de .cs-journey */
 .cs-metro--accent-play .cs-metro__node--accent {
+  border-style: solid;
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -2175,11 +3067,14 @@ a {
   }
 }
 
-/* ---- RESULT CTA / CLOSING ---- */
 .cs-result__cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   text-align: left;
   margin-top: 48px;
 }
+
 
 /* ============================================================
    FOOTER

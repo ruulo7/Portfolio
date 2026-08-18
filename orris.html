@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orris — Caso de estudio · Rubén Baldoví</title>
+  <meta name="description" content="Cómo diseñamos Orris, una app que ayuda a resolver conflictos de convivencia entre compañeros de piso.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav nav--progress" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/images/logo.png" alt="RB" class="nav__logo-img">
+        Rubén López Baldoví
+      </a>
+      <div class="nav__links">
+        <a href="index.html#projects" class="nav__link">Trabajo</a>
+        <a href="index.html#about" class="nav__link">Sobre mí</a>
+        <a href="#contact" class="btn btn--nav">Hablemos</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HOOK / INTRO -->
+    <section class="cs-section" id="hook">
+      <svg class="sello" viewBox="0 0 1440 250" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path class="sello__line sello__line--gray"  d="M -60,246 C 480,168 1020,90 1560,12"                          fill="none" stroke="#6B7280" stroke-opacity="0.28" stroke-width="1.75" stroke-linecap="round"/>
+        <path class="sello__line sello__line--green" d="M -60,246 C 1050,246 1150,50 1560,-80"                   fill="none" stroke="#059669" stroke-opacity="0.22" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+      <div class="container">
+        <div class="cs-hook__inner">
+          <h1 class="cs-hook__title reveal">Orris</h1>
+          <p class="cs-hook__tagline reveal"><span class="cs-hook__tagline-muted">El árbitro que</span> <span class="cs-hook__tagline-accent">tu convivencia necesita</span></p>
+
+          <div class="cs-meta reveal">
+            <div class="cs-meta__item">
+              <span class="cs-meta__label">Tipo</span>
+              <span class="cs-meta__value">Académico</span>
+            </div>
+            <div class="cs-meta__item">
+              <span class="cs-meta__label">Función</span>
+              <span class="cs-meta__value">Product Designer</span>
+            </div>
+            <div class="cs-meta__item">
+              <span class="cs-meta__label">Resultado</span>
+              <span class="cs-meta__value">Prototipo</span>
+            </div>
+            <div class="cs-meta__item">
+              <span class="cs-meta__label">Duración</span>
+              <span class="cs-meta__value">7 meses</span>
+            </div>
+          </div>
+
+          <div class="cs-hook__body reveal">
+            <p class="cs-hook__paragraph">Por cuestiones económicas, emanciparse solo ha dejado de ser una opción para la mayoría de los jóvenes. Compartir piso se ha vuelto la alternativa por defecto.</p>
+            <p class="cs-hook__paragraph">Nadie te enseña a convivir y puede desgastar más de lo que parece:</p>
+            <ul class="cs-hook__list">
+              <li>"Siempre ocupas el baño a la misma hora"</li>
+              <li>"¿Cuándo piensas bajar la basura?"</li>
+              <li>"Hoy al final no has fregado el comedor"</li>
+            </ul>
+            <p class="cs-hook__paragraph">Aun con una buena organización los roces son inevitables, y <strong>sin una buena comunicación no hay bienestar.</strong></p>
+            <p class="cs-hook__paragraph">Ahí es donde entra Orris. Una app que ayuda a resolver esos roces mediante <strong>acuerdos visibles</strong>, y que <strong>incorpora un asistente de IA</strong> para proponer soluciones neutrales cuando se necesita.</p>
+            <div class="cs-hook__actions">
+              <a href="#research" class="hero__cta">Seguir viendo <span class="hero__cta-arrow">↓</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTIGACIÓN GENERATIVA -->
+    <section class="cs-section" id="research">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">INVESTIGACIÓN GENERATIVA</p>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Vimos que era <strong>algo muy común</strong></h3>
+          <p class="cs-subm__text">Algunos de mis compañeros ya habían compartido piso, así que el tema nos tocaba de cerca. Lo intuíamos como algo habitual, pero al investigar vimos que en España <strong>era un fenómeno masivo y en aumento</strong>.</p>
+          <div class="cs-stat-cols reveal">
+            <div class="cs-stat-col">
+              <p class="cs-stat-col__label cs-stat-col__label--accent">Jóvenes que comparten piso</p>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="120.67 263.89" stroke-dashoffset="-137.22"></circle>
+                    <circle class="cs-donut__value" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="132.67"></circle>
+                  </svg>
+                  <img src="assets/images/icon-comparten-piso.png" alt="" class="cs-donut__icon">
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__figure cs-donut__figure--accent">52%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-stat-col">
+              <p class="cs-stat-col__label cs-stat-col__label--muted">Jóvenes que viven solos</p>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="220.95 263.89" stroke-dashoffset="-36.95"></circle>
+                    <circle class="cs-donut__value cs-donut__value--muted" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="232.95"></circle>
+                  </svg>
+                  <img src="assets/images/icon-viven-solos.png" alt="" class="cs-donut__icon cs-donut__icon--sm">
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__figure cs-donut__figure--muted">14%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="cs-stat-source">Fuente: HousingAnywhere, 2025</p>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Detectamos <strong>más de un punto de dolor</strong></h3>
+          <p class="cs-subm__text">Hicimos 8 entrevistas para escuchar a quienes vivían la experiencia. A partir de ellas, extrajimos insights y definimos dos perfiles de usuario. Laura buscaba orden y calma, Jorge compañía y ambiente. A pesar de sus diferencias, compartían dos puntos de dolor desde que pensaban en emanciparse hasta que llevaban un tiempo conviviendo: <strong>incumplimiento de expectativas en visitas</strong> y <strong>decepción con el ambiente del hogar</strong>.</p>
+          <div class="cs-personas reveal">
+            <div class="cs-persona">
+              <img src="assets/images/persona-laura.png" alt="Laura" class="cs-persona__photo">
+              <span class="cs-persona__name">Laura</span>
+            </div>
+            <div class="cs-persona">
+              <img src="assets/images/persona-jorge.png" alt="Jorge" class="cs-persona__photo">
+              <span class="cs-persona__name">Jorge</span>
+            </div>
+          </div>
+          <div class="cs-journey reveal">
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">1</span>
+              <span class="cs-journey__label">Decisión</span>
+            </div>
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">2</span>
+              <span class="cs-journey__label">Preparación</span>
+            </div>
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">3</span>
+              <span class="cs-journey__label">Búsqueda</span>
+            </div>
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">4</span>
+              <span class="cs-journey__label">Preselección</span>
+            </div>
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">5</span>
+              <span class="cs-journey__label">Contacto y criba</span>
+            </div>
+            <div class="cs-journey__step cs-journey__step--accent">
+              <span class="cs-journey__number">6</span>
+              <span class="cs-journey__label">Visita</span>
+            </div>
+            <div class="cs-journey__step">
+              <span class="cs-journey__number">7</span>
+              <span class="cs-journey__label">Mudanza</span>
+            </div>
+            <div class="cs-journey__step cs-journey__step--accent">
+              <span class="cs-journey__number">8</span>
+              <span class="cs-journey__label">Convivencia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Con los datos delante <strong>elegimos un camino</strong></h3>
+          <p class="cs-subm__text">Mediante una encuesta de 22 respuestas medimos las frustraciones que había en cada fase del proceso completo. Nos dimos cuenta de que, a partir de la búsqueda de piso, ya les preocupaba si la relación con los compañeros sería buena. Esto nos llevó a <strong>orientar el producto hacia la convivencia</strong> definitivamente.</p>
+          <p class="cs-donuts-title reveal">Preocupaciones al buscar piso</p>
+          <div class="cs-donut-trio reveal">
+            <div class="cs-stat-col">
+              <p class="cs-stat-col__label cs-stat-col__label--muted">Tamaño del piso</p>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="102.19 263.89" stroke-dashoffset="-155.70"></circle>
+                    <circle class="cs-donut__value cs-donut__value--muted" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="114.19"></circle>
+                  </svg>
+                  <img src="assets/images/icon-tamano-piso.png" alt="" class="cs-donut__icon">
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__figure cs-donut__figure--muted">59%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-stat-col cs-donut-trio__item--center">
+              <p class="cs-stat-col__label cs-stat-col__label--accent">Incertidumbre de convivencia</p>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg cs-donut__svg--lg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="139.14 263.89" stroke-dashoffset="-118.75"></circle>
+                    <circle class="cs-donut__value" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="151.14"></circle>
+                  </svg>
+                  <img src="assets/images/icon-incertidumbre-convivencia.png" alt="" class="cs-donut__icon cs-donut__icon--lg">
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__figure cs-donut__figure--lg cs-donut__figure--accent">45%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-stat-col">
+              <p class="cs-stat-col__label cs-stat-col__label--muted">Estado de conservación</p>
+              <div class="cs-stat-row__chart">
+                <div class="cs-donut">
+                  <svg viewBox="0 0 100 100" class="cs-donut__svg">
+                    <circle class="cs-donut__track" cx="50" cy="50" r="42" stroke-dasharray="115.39 263.89" stroke-dashoffset="-142.50"></circle>
+                    <circle class="cs-donut__value cs-donut__value--muted" cx="50" cy="50" r="42" stroke-dasharray="263.89 263.89" stroke-dashoffset="263.89" data-target-offset="127.39"></circle>
+                  </svg>
+                  <img src="assets/images/icon-estado-conservacion.png" alt="" class="cs-donut__icon">
+                </div>
+                <div class="cs-donut__legend">
+                  <span class="cs-donut__figure cs-donut__figure--muted">54%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTRATEGIA DE PRODUCTO -->
+    <section class="cs-section" id="strategy">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">ESTRATEGIA DE PRODUCTO</p>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Al principio quisimos <strong>abarcarlo todo</strong></h3>
+          <p class="cs-subm__text">Gracias a la investigación, teníamos claro que el producto debía girar en torno a la reducción de roces mediante la comunicación. Sin embargo, <strong>añadimos la gestión de gastos y tareas</strong> porque sabíamos que buena parte de los roces venían de la desorganización.</p>
+          <div class="cs-equation reveal">
+            <img src="assets/images/icon-comunicacion.png" alt="" class="cs-equation__icon">
+            <span class="cs-equation__sign cs-equation__sign--accent">+</span>
+            <img src="assets/images/icon-gastos.png" alt="" class="cs-equation__icon">
+            <span class="cs-equation__sign cs-equation__sign--accent">+</span>
+            <img src="assets/images/icon-tareas.png" alt="" class="cs-equation__icon">
+            <span class="cs-equation__sign">=</span>
+            <span class="cs-equation__result">¿Solución?</span>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Finalmente <strong>enfocamos con criterio</strong></h3>
+          <p class="cs-subm__text">Ya había productos como Tricount o Nipto que resolvían bien la parte operativa de un hogar. Además, repasamos bien los datos y vimos que hasta en los pisos más organizados había discusiones. Fue entonces cuando decidimos centrarnos en el verdadero problema: <strong>la comunicación</strong>. <em>En este punto me encargué de reformular la propuesta de valor y de aterrizar el nuevo MVP fiel a ese enfoque.</em></p>
+          <div class="cs-choice reveal">
+            <div class="cs-choice__group">
+              <div class="cs-choice__icons">
+                <img src="assets/images/icon-gastos.png" alt="" class="cs-choice__icon">
+                <img src="assets/images/icon-tareas.png" alt="" class="cs-choice__icon">
+              </div>
+              <span class="cs-choice__label">Descartado</span>
+            </div>
+            <div class="cs-choice__group">
+              <div class="cs-choice__icons">
+                <img src="assets/images/icon-comunicacion-verde.png" alt="" class="cs-choice__icon">
+              </div>
+              <span class="cs-choice__label cs-choice__label--accent">Enfoque</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UX DESIGN -->
+    <section class="cs-section" id="ux">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">UX DESIGN</p>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Pensamos en <strong>el corazón del producto</strong></h3>
+          <p class="cs-subm__text">Cada vez que surge un roce se necesita la participación de todos los involucrados para resolverlo. Como sabíamos que cada uno tiene sus horarios, decidimos plantear dos caminos <strong>en función de si podían coincidir o no</strong>. <em>En este punto me encargué de diseñar ambos flujos.</em></p>
+          <div class="cs-flow reveal">
+            <svg class="cs-flow__svg" viewBox="1 51 1020 298" role="img" aria-label="Flujo: surge un roce, se decide si pueden coincidir; si sí, lo debaten al momento y juntos; si no, lo debaten más tarde y por separado; en ambos casos cierran un acuerdo">
+              <defs>
+                <marker id="orris-flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path class="cs-flow__arrowhead" d="M0 0 10 5 0 10 Z"/>
+                </marker>
+              </defs>
+
+              <g class="cs-flow__base">
+                <line class="cs-flow__line" x1="170" y1="200" x2="225" y2="200" marker-end="url(#orris-flow-arrow)"/>
+                <path class="cs-flow__line" d="M350 126 V98 H514" marker-end="url(#orris-flow-arrow)"/>
+                <path class="cs-flow__line" d="M350 274 V302 H514" marker-end="url(#orris-flow-arrow)"/>
+                <path class="cs-flow__line" d="M800 98 H940 V152" marker-end="url(#orris-flow-arrow)"/>
+                <path class="cs-flow__line" d="M800 302 H940 V248" marker-end="url(#orris-flow-arrow)"/>
+
+                <ellipse class="cs-flow__shape" cx="82" cy="200" rx="80" ry="42"/>
+                <text class="cs-flow__text" x="82" y="200" text-anchor="middle" dominant-baseline="central">Surge un roce</text>
+
+                <path class="cs-flow__shape" d="M350 126 468 200 350 274 232 200 Z"/>
+                <text class="cs-flow__text" x="350" y="189" text-anchor="middle" dominant-baseline="central">¿Pueden</text>
+                <text class="cs-flow__text" x="350" y="213" text-anchor="middle" dominant-baseline="central">coincidir?</text>
+
+                <text class="cs-flow__branch" x="435" y="82" text-anchor="middle" dominant-baseline="central">Sí</text>
+                <text class="cs-flow__branch" x="435" y="318" text-anchor="middle" dominant-baseline="central">No</text>
+
+                <ellipse class="cs-flow__shape" cx="940" cy="200" rx="80" ry="42"/>
+                <text class="cs-flow__text" x="940" y="189" text-anchor="middle" dominant-baseline="central">Cierran un</text>
+                <text class="cs-flow__text" x="940" y="213" text-anchor="middle" dominant-baseline="central">acuerdo</text>
+              </g>
+
+              <g class="cs-flow__accent-group">
+                <rect class="cs-flow__shape cs-flow__shape--accent" x="520" y="52" width="280" height="92" rx="14"/>
+                <text class="cs-flow__text cs-flow__text--accent" x="660" y="87" text-anchor="middle" dominant-baseline="central">Lo debaten al momento</text>
+                <text class="cs-flow__text cs-flow__text--accent" x="660" y="111" text-anchor="middle" dominant-baseline="central">y juntos</text>
+
+                <rect class="cs-flow__shape cs-flow__shape--accent" x="520" y="256" width="280" height="92" rx="14"/>
+                <text class="cs-flow__text cs-flow__text--accent" x="660" y="291" text-anchor="middle" dominant-baseline="central">Lo debaten más tarde</text>
+                <text class="cs-flow__text cs-flow__text--accent" x="660" y="315" text-anchor="middle" dominant-baseline="central">y por separado</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Nos ocupamos de <strong>las posibles limitaciones</strong></h3>
+          <p class="cs-subm__text"><strong>Incorporamos un asistente de IA</strong> para que los debates siempre fluyan, aunque haya una falta de ideas. Su función es sugerir soluciones neutrales a quien quiere aportar algo, pero no sabe qué.</p>
+          <div class="cs-flow reveal">
+            <svg class="cs-flow__svg cs-flow__svg--wide" viewBox="1 51 1265 298" role="img" aria-label="Flujo: quiere aportar; si tiene una solución la redacta sin ayuda, si no la redacta el asistente; en ambos casos se debate y cierran un acuerdo">
+              <defs>
+                <marker id="orris-flow-arrow-2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path class="cs-flow__arrowhead" d="M0 0 10 5 0 10 Z"/>
+                </marker>
+              </defs>
+
+              <g class="cs-flow__base">
+                <line class="cs-flow__line" x1="170" y1="200" x2="225" y2="200" marker-end="url(#orris-flow-arrow-2)"/>
+                <path class="cs-flow__line" d="M350 126 V98 H514" marker-end="url(#orris-flow-arrow-2)"/>
+                <path class="cs-flow__line" d="M350 274 V302 H514" marker-end="url(#orris-flow-arrow-2)"/>
+                <path class="cs-flow__line" d="M740 98 H935 V148" marker-end="url(#orris-flow-arrow-2)"/>
+                <path class="cs-flow__line" d="M740 302 H935 V252" marker-end="url(#orris-flow-arrow-2)"/>
+                <line class="cs-flow__line" x1="1044" y1="200" x2="1101" y2="200" marker-end="url(#orris-flow-arrow-2)"/>
+
+                <ellipse class="cs-flow__shape" cx="82" cy="200" rx="80" ry="42"/>
+                <text class="cs-flow__text" x="82" y="200" text-anchor="middle" dominant-baseline="central">Quiere aportar</text>
+
+                <path class="cs-flow__shape" d="M350 126 468 200 350 274 232 200 Z"/>
+                <text class="cs-flow__text" x="350" y="189" text-anchor="middle" dominant-baseline="central">¿Tiene una</text>
+                <text class="cs-flow__text" x="350" y="213" text-anchor="middle" dominant-baseline="central">solución?</text>
+
+                <text class="cs-flow__branch" x="435" y="82" text-anchor="middle" dominant-baseline="central">Sí</text>
+                <text class="cs-flow__branch" x="435" y="318" text-anchor="middle" dominant-baseline="central">No</text>
+
+                <rect class="cs-flow__shape" x="520" y="52" width="220" height="92" rx="14"/>
+                <text class="cs-flow__text" x="630" y="87" text-anchor="middle" dominant-baseline="central">La redacta</text>
+                <text class="cs-flow__text" x="630" y="111" text-anchor="middle" dominant-baseline="central">sin ayuda</text>
+
+                <rect class="cs-flow__shape" x="830" y="154" width="210" height="92" rx="14"/>
+                <text class="cs-flow__text" x="935" y="200" text-anchor="middle" dominant-baseline="central">Se debate</text>
+
+                <ellipse class="cs-flow__shape" cx="1185" cy="200" rx="80" ry="42"/>
+                <text class="cs-flow__text" x="1185" y="189" text-anchor="middle" dominant-baseline="central">Cierran un</text>
+                <text class="cs-flow__text" x="1185" y="213" text-anchor="middle" dominant-baseline="central">acuerdo</text>
+              </g>
+
+              <g class="cs-flow__accent-group">
+                <image href="assets/images/icon-asistente.png" x="608" y="202" width="44" height="44"/>
+                <rect class="cs-flow__shape cs-flow__shape--accent" x="520" y="256" width="220" height="92" rx="14"/>
+                <text class="cs-flow__text cs-flow__text--accent" x="630" y="291" text-anchor="middle" dominant-baseline="central">La redacta el</text>
+                <text class="cs-flow__text cs-flow__text--accent" x="630" y="315" text-anchor="middle" dominant-baseline="central">asistente</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Definimos <strong>la estructura</strong></h3>
+          <p class="cs-subm__text">Dividimos la app en cuatro secciones pensadas para cuidar la convivencia:</p>
+          <ul class="cs-hook__list">
+            <li><strong>Home:</strong> ver novedades e iniciar una resolución.</li>
+            <li><strong>Actividad:</strong> ver lo acordado y cerrar lo pendiente.</li>
+            <li><strong>Hogar:</strong> definir normas comunitarias.</li>
+            <li><strong>Perfil:</strong> definir preferencias de convivencia.</li>
+          </ul>
+          <p class="cs-subm__text">Contemplamos validar nuestra arquitectura con tree testing y card sorting, pero priorizamos llegar al prototipo dentro del plazo.</p>
+          <div class="cs-arch reveal">
+            <svg class="cs-arch__svg" viewBox="81 6 558 408" role="img" aria-label="Diagrama: el producto se divide en Home, Actividad, Hogar y Perfil">
+              <g class="cs-arch__center">
+                <rect class="cs-arch__shape" x="265" y="171" width="190" height="78" rx="12"/>
+                <text class="cs-arch__text cs-arch__text--center" x="360" y="210" text-anchor="middle" dominant-baseline="central">Producto</text>
+              </g>
+
+              <g class="cs-arch__node">
+                <line class="cs-arch__line" x1="202.2" y1="118.6" x2="265" y2="171"/>
+                <circle class="cs-arch__shape cs-arch__shape--accent" cx="150" cy="75" r="68"/>
+                <text class="cs-arch__text cs-arch__text--accent" x="150" y="75" text-anchor="middle" dominant-baseline="central">Home</text>
+              </g>
+
+              <g class="cs-arch__node">
+                <line class="cs-arch__line" x1="517.8" y1="118.6" x2="455" y2="171"/>
+                <circle class="cs-arch__shape cs-arch__shape--accent" cx="570" cy="75" r="68"/>
+                <text class="cs-arch__text cs-arch__text--accent" x="570" y="75" text-anchor="middle" dominant-baseline="central">Actividad</text>
+              </g>
+
+              <g class="cs-arch__node">
+                <line class="cs-arch__line" x1="202.2" y1="301.4" x2="265" y2="249"/>
+                <circle class="cs-arch__shape cs-arch__shape--accent" cx="150" cy="345" r="68"/>
+                <text class="cs-arch__text cs-arch__text--accent" x="150" y="345" text-anchor="middle" dominant-baseline="central">Hogar</text>
+              </g>
+
+              <g class="cs-arch__node">
+                <line class="cs-arch__line" x1="517.8" y1="301.4" x2="455" y2="249"/>
+                <circle class="cs-arch__shape cs-arch__shape--accent" cx="570" cy="345" r="68"/>
+                <text class="cs-arch__text cs-arch__text--accent" x="570" y="345" text-anchor="middle" dominant-baseline="central">Perfil</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI DESIGN -->
+    <section class="cs-section" id="ui">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">BRANDING + UI DESIGN</p>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Orris nació de <strong>la idea de comunicar</strong></h3>
+          <p class="cs-subm__text">El nombre vino de Iris, <strong>la mensajera de los dioses en la mitología griega</strong>. Nuestro mensaje era mejorar la comunicación para mejorar el bienestar, así que nos encajaba.</p>
+          <div class="cs-figure reveal">
+            <img src="assets/images/iris-jarron.png" alt="Jarrón de cerámica con la escena de Iris, la mensajera de los dioses" class="cs-figure__img">
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Encontramos <strong>nuestra identidad</strong></h3>
+          <p class="cs-subm__text">Nuestro producto tenía el riesgo de transmitir tensión, así que tomamos el camino contrario. <strong>Descartamos el rojo</strong> pese a encajar en situaciones negativas, y elegimos una paleta de azules y verdes que no alarmasen. Buscamos una <strong>tipografía cómodamente legible</strong> en momentos de fricción. <em>En este punto <strong>cambié la palabra "roce" por "desacuerdo"</strong> para que nada se sintiese como un problema.</em></p>
+          <div class="cs-brand reveal">
+            <div class="cs-brand__palettes">
+              <div class="cs-brand__item">
+                <span class="cs-brand__label">PRIMARIO</span>
+                <img src="assets/images/paleta-azul.png" alt="Paleta de azules, del tono 100 al 800" class="cs-brand__palette">
+              </div>
+              <div class="cs-brand__item">
+                <span class="cs-brand__label">ACENTO</span>
+                <img src="assets/images/paleta-verde.png" alt="Paleta de verdes, del tono 100 al 800" class="cs-brand__palette">
+              </div>
+              <div class="cs-brand__item">
+                <span class="cs-brand__label">NEUTRAL</span>
+                <img src="assets/images/paleta-gris.png" alt="Paleta de grises, del tono 100 al 800" class="cs-brand__palette">
+              </div>
+            </div>
+
+            <div class="cs-brand__type">
+              <img src="assets/images/tipografia.png" alt="Escala tipográfica: estilo, peso y tamaño de H1 a Caption" class="cs-brand__type-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Ideamos la manera de <strong>evitar disputas</strong></h3>
+          <p class="cs-subm__text">Pretender que en el 100% de debates quedasen todos contentos no era realista, por eso buscamos la manera más justa de resolverlo. Pensamos en un <strong>sistema simple de votación</strong> en el que cada persona tiene dos opciones: hacer su propuesta o elegir la del compañero. Cuando todos han marcado la misma, el acuerdo se cierra.</p>
+          <div class="cs-vote reveal">
+            <div class="cs-vote__set">
+              <img src="assets/images/card-alex.png?v=2" alt="Propuesta de Alex" class="cs-vote__card cs-vote__card--a">
+              <div class="cs-vote__press">
+                <img src="assets/images/card-marta.png?v=2" alt="Propuesta de Marta" class="cs-vote__card cs-vote__card--b">
+                <img src="assets/images/card-marta.png?v=2" alt="" aria-hidden="true" class="cs-vote__veil">
+                <img src="assets/images/card-seleccionada-1.png?v=2" alt="La propuesta de Marta, con 1 voto" class="cs-vote__sel cs-vote__sel--1">
+                <img src="assets/images/card-seleccionada-2.png?v=2" alt="La propuesta de Marta, con 2 votos" class="cs-vote__sel cs-vote__sel--2">
+                <img src="assets/images/card-seleccionada-3.png?v=2" alt="La propuesta de Marta, con 3 votos" class="cs-vote__sel cs-vote__sel--3">
+                <img src="assets/images/card-cierre-acuerdo.png?v=3" alt="Acuerdo cerrado, guardado en Actividad" class="cs-vote__close">
+              </div>
+              <img src="assets/images/card-luis.png?v=2" alt="Propuesta de Luis" class="cs-vote__card cs-vote__card--c">
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Testeamos y mejoramos <strong>lo que no se entendía</strong></h3>
+          <p class="cs-subm__text">Al abrir la app, los usuarios esperaban encontrar los sucesos más recientes. Sin embargo, encontraban accesos directos a diferentes partes del producto que no les decían nada. Mediante un rediseño de la Home, <strong>conseguimos ponerles en contexto</strong>.</p>
+          <div class="cs-redesign reveal">
+            <img src="assets/images/home-1.png?v=2" alt="Home inicial: accesos directos sin contexto" class="cs-redesign__img cs-redesign__img--1">
+            <svg class="cs-redesign__arrow" viewBox="0 0 64 24" aria-hidden="true">
+              <line x1="2" y1="12" x2="56" y2="12"/>
+              <path d="M44 2 56 12 44 22"/>
+            </svg>
+            <img src="assets/images/home-2.png" alt="Home rediseñada: sucesos recientes en contexto" class="cs-redesign__img cs-redesign__img--2">
+          </div>
+          <p class="cs-subm__text">También vimos que se atascaban a la hora de escoger el camino para resolver un desacuerdo. No les quedaba claro lo que pasaría al pulsar cada botón, así que <strong>enfocamos el texto a la acción para ayudar al usuario</strong>.</p>
+          <div class="cs-redesign reveal">
+            <img src="assets/images/botones-modalidades-1.png" alt="Botones de modalidad sin texto orientado a la acción" class="cs-redesign__img cs-redesign__img--1 cs-redesign__img--sm">
+            <svg class="cs-redesign__arrow" viewBox="0 0 64 24" aria-hidden="true">
+              <line x1="2" y1="12" x2="56" y2="12"/>
+              <path d="M44 2 56 12 44 22"/>
+            </svg>
+            <img src="assets/images/botones-modalidades-2.png" alt="Botones de modalidad con texto enfocado a la acción" class="cs-redesign__img cs-redesign__img--2 cs-redesign__img--sm">
+          </div>
+        </div>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Al fin obtuvimos <strong>el resultado</strong></h3>
+          <p class="cs-subm__text">Cada pantalla reúne las decisiones que fuimos tomando para conseguir una interfaz calmada, cercana y <strong>pensada para que convivir sea un poco más fácil</strong>.</p>
+          <div class="cs-screens reveal">
+            <div class="cs-screens__item">
+              <span class="cs-screens__label">HOME</span>
+              <img src="assets/images/pantalla-home.png?v=2" alt="Pantalla Home final" class="cs-screens__img">
+            </div>
+            <div class="cs-screens__item">
+              <span class="cs-screens__label">CAMINOS</span>
+              <img src="assets/images/pantalla-modalidades.png?v=2" alt="Pantalla de elección de modalidad final" class="cs-screens__img">
+            </div>
+            <div class="cs-screens__item">
+              <span class="cs-screens__label">ACUERDOS</span>
+              <img src="assets/images/pantalla-acuerdos.png?v=2" alt="Pantalla de acuerdos final" class="cs-screens__img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLEXIÓN -->
+    <section class="cs-section" id="reflection">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">REFLEXIÓN</p>
+
+        <div class="cs-subm reveal">
+          <h3 class="cs-subm__title">Lo que me llevo <strong>de Orris</strong></h3>
+          <p class="cs-subm__text">Fue mi primer proyecto end-to-end, y me enseñó a conducir un producto por todo el proceso, a pulir su enfoque preocupándome por entender el problema real, y a iterar el diseño escuchando a los usuarios. <strong>Más que un resultado, me llevo un aprendizaje</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="contact__title reveal">Contacto</h2>
+        <p class="contact__sub reveal">Si buscas a alguien que diseñe para vender, hablemos.</p>
+        <div class="contact__row reveal">
+          <a href="mailto:baldovi.ruben@gmail.com" class="contact__item">baldovi.ruben@gmail.com</a>
+          <span class="contact__sep">|</span>
+          <a href="https://www.linkedin.com/in/rub%C3%A9n-l%C3%B3pez-baldov%C3%AD-9379b819b/" target="_blank" rel="noopener" class="contact__item">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__copy">© 2026 Rubén López Baldoví</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

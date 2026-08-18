@@ -210,6 +210,99 @@ window.addEventListener('scroll', () => {
   });
 }());
 
+// Journey de puntos de dolor (Orris) — mismo patrón que la línea de metro de
+// Flowck: los pasos entran uno a uno troquelados en gris, y los acentuados
+// pasan a línea continua y verde una vez han entrado.
+(function () {
+  const journeys = document.querySelectorAll('.cs-journey');
+  if (!journeys.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  journeys.forEach(journey => {
+    const steps = journey.querySelectorAll('.cs-journey__step');
+    steps.forEach((el, i) => {
+      el.style.transitionDelay = (i * 90) + 'ms';
+    });
+
+    if (reduceMotion) {
+      journey.classList.add('cs-journey--play', 'cs-journey--accent-play');
+      return;
+    }
+
+    const journeyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        journey.classList.add('cs-journey--play');
+        const ACCENT_DELAY = steps.length * 90 + 500;
+        setTimeout(() => journey.classList.add('cs-journey--accent-play'), ACCENT_DELAY);
+        journeyObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    journeyObserver.observe(journey);
+  });
+}());
+
+// Diagramas de flujo (UX Design, Orris) — entrada en dos tiempos: primero todo
+// el andamiaje gris, y 2s después las ramas acentuadas en verde.
+(function () {
+  const flows = document.querySelectorAll('.cs-flow');
+  if (!flows.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    flows.forEach(el => el.classList.add('cs-flow--play', 'cs-flow--accent-play'));
+    return;
+  }
+
+  flows.forEach(flow => {
+    const flowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        flow.classList.add('cs-flow--play');
+        setTimeout(() => flow.classList.add('cs-flow--accent-play'), 2000);
+        flowObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    flowObserver.observe(flow);
+  });
+}());
+
+// Diagrama de estructura (UX Design, Orris) — "Producto" aparece primero, y
+// los cuatro nodos acentuados entran encadenados uno a uno con su línea.
+(function () {
+  const arches = document.querySelectorAll('.cs-arch');
+  if (!arches.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  arches.forEach(arch => {
+    const nodes = arch.querySelectorAll('.cs-arch__node');
+    nodes.forEach((el, i) => {
+      el.style.transitionDelay = (i * 250) + 'ms';
+    });
+
+    if (reduceMotion) {
+      arch.classList.add('cs-arch--play', 'cs-arch--nodes-play');
+      return;
+    }
+
+    const archObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        arch.classList.add('cs-arch--play');
+        setTimeout(() => arch.classList.add('cs-arch--nodes-play'), 500);
+        archObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    archObserver.observe(arch);
+  });
+}());
+
 // Donuts de Discovery — cada uno se dibuja al entrar en viewport, en su propio momento
 (function () {
   const donuts = document.querySelectorAll('.cs-donut__value');
@@ -467,5 +560,145 @@ window.addEventListener('scroll', () => {
     }, { threshold: 0.3 });
 
     blockObserver.observe(card);
+  });
+}());
+
+// Rediseño de la Home (UI Design) — Home 1 crece, la flecha y Home 2 aparecen
+// en cadena; se dispara una sola vez al entrar en scroll y queda fija.
+(function () {
+  const blocks = document.querySelectorAll('.cs-redesign');
+  if (!blocks.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    blocks.forEach(el => {
+      el.querySelectorAll('.cs-redesign__img, .cs-redesign__arrow').forEach(part => {
+        part.style.opacity = '1';
+        part.style.transform = 'none';
+      });
+    });
+    return;
+  }
+
+  blocks.forEach(block => {
+    const parts = block.querySelectorAll('.cs-redesign__img, .cs-redesign__arrow');
+
+    const redesignObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        block.classList.add('cs-redesign--play');
+        parts.forEach(part => {
+          part.addEventListener('animationend', () => part.classList.add('is-settled'), { once: true });
+        });
+        redesignObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    redesignObserver.observe(block);
+  });
+}());
+
+// Pantallas finales (UI Design) — las tres capturas entran encadenadas de
+// izquierda a derecha; se dispara una sola vez al entrar en scroll y queda fija.
+(function () {
+  const blocks = document.querySelectorAll('.cs-screens');
+  if (!blocks.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    blocks.forEach(el => {
+      el.querySelectorAll('.cs-screens__img, .cs-screens__label').forEach(part => {
+        part.style.opacity = '1';
+        part.style.transform = 'none';
+      });
+    });
+    return;
+  }
+
+  blocks.forEach(block => {
+    const parts = block.querySelectorAll('.cs-screens__img, .cs-screens__label');
+
+    const screensObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        block.classList.add('cs-screens--play');
+        parts.forEach(part => {
+          part.addEventListener('animationend', () => part.classList.add('is-settled'), { once: true });
+        });
+        screensObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    screensObserver.observe(block);
+  });
+}());
+
+// Sello de identidad — dos líneas que convergen (Hero: retardado; hooks: en carga)
+(function () {
+  const sellos = document.querySelectorAll('.sello');
+  if (!sellos.length) return;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  sellos.forEach(sello => {
+    const paths = sello.querySelectorAll('.sello__line');
+
+    if (reduced) return; // aparecen dibujadas estáticamente (sin dashoffset en CSS)
+
+    // Ocultar líneas hasta que arranque la animación
+    paths.forEach(path => {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+
+    const isHero = !!sello.closest('.hero');
+    const baseDelay = isHero ? 2200 : 300; // hero: después de todo; hook: al cargar
+
+    function draw() {
+      paths.forEach((path, i) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            path.style.transition = `stroke-dashoffset 1s ease-out ${baseDelay + i * 350}ms`;
+            path.style.strokeDashoffset = '0';
+          });
+        });
+      });
+    }
+
+    const section = sello.closest('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        draw();
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0 });
+
+    observer.observe(section);
+  });
+}());
+
+// Sistema de votación (UI Design) — bucle de 11.9s que solo debe arrancar
+// cuando el apartado entra en el viewport, nunca antes (si no, el usuario lo
+// pilla ya empezado por un punto aleatorio al llegar por scroll).
+(function () {
+  const blocks = document.querySelectorAll('.cs-vote');
+  if (!blocks.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  blocks.forEach(block => {
+    const voteObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        block.classList.add('cs-vote--play');
+        voteObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    voteObserver.observe(block);
   });
 }());
