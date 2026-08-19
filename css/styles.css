@@ -305,7 +305,7 @@ a {
 
 /* Barrido verde izquierda→derecha en el acento del Hero únicamente */
 .hero__title .hero__accent {
-  background-image: linear-gradient(to right, var(--accent) 50%, #111111 50%);
+  background-image: linear-gradient(to right, var(--accent) 50%, #6B7280 50%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
