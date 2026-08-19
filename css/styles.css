@@ -218,6 +218,9 @@ a {
   color: var(--accent);
   font-weight: bold;
 }
+.hero__gray {
+  color: #6B7280;
+}
 .about__paragraph .hero__accent {
   color: #111111;
 }
