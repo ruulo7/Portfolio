@@ -2692,7 +2692,8 @@ a {
   flex-shrink: 0;
   overflow: hidden;
 }
-.cs-ch-icon svg {
+.cs-ch-icon svg,
+.cs-ch-icon img {
   display: block;
   width: 100%;
   height: 100%;
