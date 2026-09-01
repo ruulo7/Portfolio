@@ -635,51 +635,6 @@ window.addEventListener('scroll', () => {
   });
 }());
 
-// Sello de identidad — dos líneas que convergen (Hero: retardado; hooks: en carga)
-(function () {
-  const sellos = document.querySelectorAll('.sello');
-  if (!sellos.length) return;
-
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  sellos.forEach(sello => {
-    const paths = sello.querySelectorAll('.sello__line');
-
-    if (reduced) return; // aparecen dibujadas estáticamente (sin dashoffset en CSS)
-
-    // Ocultar líneas hasta que arranque la animación
-    paths.forEach(path => {
-      const len = path.getTotalLength();
-      path.style.strokeDasharray = len;
-      path.style.strokeDashoffset = len;
-    });
-
-    const isHero = !!sello.closest('.hero');
-    const baseDelay = isHero ? 2200 : 300; // hero: después de todo; hook: al cargar
-
-    function draw() {
-      paths.forEach((path, i) => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            path.style.transition = `stroke-dashoffset 1s ease-out ${baseDelay + i * 350}ms`;
-            path.style.strokeDashoffset = '0';
-          });
-        });
-      });
-    }
-
-    const section = sello.closest('section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        draw();
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0 });
-
-    observer.observe(section);
-  });
-}());
 
 // Sistema de votación (UI Design) — bucle de 11.9s que solo debe arrancar
 // cuando el apartado entra en el viewport, nunca antes (si no, el usuario lo
