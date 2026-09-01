@@ -271,38 +271,6 @@ window.addEventListener('scroll', () => {
   });
 }());
 
-// Diagrama de estructura (UX Design, Orris) — "Producto" aparece primero, y
-// los cuatro nodos acentuados entran encadenados uno a uno con su línea.
-(function () {
-  const arches = document.querySelectorAll('.cs-arch');
-  if (!arches.length) return;
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  arches.forEach(arch => {
-    const nodes = arch.querySelectorAll('.cs-arch__node');
-    nodes.forEach((el, i) => {
-      el.style.transitionDelay = (i * 250) + 'ms';
-    });
-
-    if (reduceMotion) {
-      arch.classList.add('cs-arch--play', 'cs-arch--nodes-play');
-      return;
-    }
-
-    const archObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        arch.classList.add('cs-arch--play');
-        setTimeout(() => arch.classList.add('cs-arch--nodes-play'), 500);
-        archObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.2 });
-
-    archObserver.observe(arch);
-  });
-}());
-
 // Donuts de Discovery — cada uno se dibuja al entrar en viewport, en su propio momento
 (function () {
   const donuts = document.querySelectorAll('.cs-donut__value');

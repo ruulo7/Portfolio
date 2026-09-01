@@ -1370,74 +1370,38 @@ a {
   color: var(--accent);
 }
 
-/* ---- DIAGRAMA DE ARQUITECTURA (UX Design > sub-momento 1) ----
-   Nodo central "Producto" y las cuatro secciones colgando de él. Todo en
-   línea continua sin relleno, en el mismo gris que .cs-choice__label
-   ("Descartado"). Entrada en scroll con el .reveal propio del contenedor. */
-.cs-arch {
+/* ---- ESQUEMA DE BARRA DE NAVEGACIÓN (UX Design > sub-momento 1) ----
+   Representa la navegación principal de la app (Home, Actividad, Hogar,
+   Perfil): un esquema sobrio, no la barra real de la UI — sin fondo oscuro
+   ni color, solo el contorno que insinúa el componente. Entrada estándar
+   del caso, heredada del .reveal propio del contenedor. */
+.cs-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 72px;
+  width: fit-content;
+  border: 2px solid var(--accent);
+  border-radius: 28px;
+  padding: 34px 56px;
   margin-top: 56px;
   margin-bottom: 56px;
 }
-/* El viewBox está recortado al contenido real (sin aire vacío alrededor), para
-   que el trazo más a la izquierda caiga justo en el margen del texto. El ancho
-   mantiene la misma escala de dibujo que antes del recorte. */
-.cs-arch__svg {
-  width: 465px;
-  max-width: 100%;
-  height: auto;
-  display: block;
+.cs-navbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
-.cs-arch__shape {
-  fill: none;
-  stroke: #C0C2C6;
-  stroke-width: 2;
+.cs-navbar__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--text-secondary);
 }
-.cs-arch__line {
-  stroke: #C0C2C6;
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-.cs-arch__text {
-  fill: #C0C2C6;
-  stroke: none;
-  font-family: var(--font);
-  font-size: 24px;
+.cs-navbar__label {
+  font-size: 16px;
   font-weight: 600;
-}
-/* El nodo central lleva el gris fuerte de .cs-choice__label ("Descartado") */
-.cs-arch__text--center {
-  font-size: 26px;
-  fill: var(--text-secondary);
-}
-/* Las cuatro secciones se acentúan; el nodo central y las líneas siguen en gris */
-.cs-arch__shape--accent {
-  stroke: var(--accent);
-}
-.cs-arch__text--accent {
-  fill: var(--accent);
-}
-/* Entrada en secuencia: primero "Producto", y encadenados después los cuatro
-   nodos acentuados con su línea (ver IIFE de .cs-arch en main.js). */
-.cs-arch__center {
-  opacity: 0;
-  transition: opacity 500ms ease-out;
-}
-.cs-arch--play .cs-arch__center {
-  opacity: 1;
-}
-.cs-arch__node {
-  opacity: 0;
-  transition: opacity 400ms ease-out;
-}
-.cs-arch--nodes-play .cs-arch__node {
-  opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  .cs-arch__center,
-  .cs-arch__node {
-    transition: none !important;
-    opacity: 1 !important;
-  }
+  color: var(--text-secondary);
 }
 
 /* ---- DIAGRAMA DE FLUJO (UX Design > sub-momento 2) ----
@@ -1941,6 +1905,29 @@ a {
 }
 
 /* ---- PERSONAS + JOURNEY (Investigación > sub-momento 2: user personas y sus fases clave) ---- */
+/* Rótulos que nombran cada pieza de la ilustración (personas / journey),
+   mismo estilo que .cs-brand__label y .cs-screens__label. */
+.cs-caption {
+  display: block;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 32px;
+  margin-bottom: 14px;
+}
+/* El rótulo ya marca la separación con el texto de arriba; el elemento que
+   nombra no necesita además su propio margin-top */
+.cs-caption + .cs-personas,
+.cs-caption + .cs-journey {
+  margin-top: 0;
+}
+/* Un poco más de aire entre los nombres de personas y el rótulo siguiente */
+.cs-personas + .cs-caption {
+  margin-top: 56px;
+}
 .cs-personas {
   display: flex;
   justify-content: flex-start;
@@ -1964,7 +1951,7 @@ a {
 .cs-persona__name {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--accent);
 }
 .cs-journey {
   display: flex;
