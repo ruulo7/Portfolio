@@ -676,60 +676,73 @@ window.addEventListener('scroll', () => {
     const xL = y => xLT + f(y) * (xLB - xLT);
     const xR = y => xRT + f(y) * (xRB - xRT);
 
-    const sL = svg.querySelector('.funnel__side--left');
-    const sR = svg.querySelector('.funnel__side--right');
-    const h1 = svg.querySelector('.funnel__h--1');
-    const h2 = svg.querySelector('.funnel__h--2');
-    const h3 = svg.querySelector('.funnel__h--3');
+    const top = svg.querySelector('.funnel__top');
+    const bot = svg.querySelector('.funnel__bot');
+    const sL  = svg.querySelector('.funnel__side--left');
+    const sR  = svg.querySelector('.funnel__side--right');
+    const h1  = svg.querySelector('.funnel__h--1');
+    const h2  = svg.querySelector('.funnel__h--2');
+    const h3  = svg.querySelector('.funnel__h--3');
 
-    attr(sL, 'x1', xLT);     attr(sL, 'y1', yT);   attr(sL, 'x2', xLB);     attr(sL, 'y2', yB);
-    attr(sR, 'x1', xRT);     attr(sR, 'y1', yT);   attr(sR, 'x2', xRB);     attr(sR, 'y2', yB);
-    attr(h1, 'x1', xL(yG1)); attr(h1, 'y1', yG1);  attr(h1, 'x2', xR(yG1)); attr(h1, 'y2', yG1);
-    attr(h2, 'x1', xL(yG2)); attr(h2, 'y1', yG2);  attr(h2, 'x2', xR(yG2)); attr(h2, 'y2', yG2);
-    attr(h3, 'x1', xL(yG3)); attr(h3, 'y1', yG3);  attr(h3, 'x2', xR(yG3)); attr(h3, 'y2', yG3);
+    // Líneas de cierre (boca superior e inferior del embudo)
+    attr(top, 'x1', xLT);     attr(top, 'y1', yT);   attr(top, 'x2', xRT);     attr(top, 'y2', yT);
+    attr(bot, 'x1', xLB);     attr(bot, 'y1', yB);   attr(bot, 'x2', xRB);     attr(bot, 'y2', yB);
+    // Lados diagonales
+    attr(sL, 'x1', xLT);      attr(sL, 'y1', yT);    attr(sL, 'x2', xLB);      attr(sL, 'y2', yB);
+    attr(sR, 'x1', xRT);      attr(sR, 'y1', yT);    attr(sR, 'x2', xRB);      attr(sR, 'y2', yB);
+    // Divisiones horizontales centradas en los huecos entre bloques
+    attr(h1, 'x1', xL(yG1)); attr(h1, 'y1', yG1);   attr(h1, 'x2', xR(yG1)); attr(h1, 'y2', yG1);
+    attr(h2, 'x1', xL(yG2)); attr(h2, 'y1', yG2);   attr(h2, 'x2', xR(yG2)); attr(h2, 'y2', yG2);
+    attr(h3, 'x1', xL(yG3)); attr(h3, 'y1', yG3);   attr(h3, 'x2', xR(yG3)); attr(h3, 'y2', yG3);
   }
 
   const allLines = () => Array.from(svg.querySelectorAll('line'));
 
-  requestAnimationFrame(() => {
-    layout();
-
-    if (reduced) return;
-
-    // Ocultar líneas para animarlas progresivamente
-    allLines().forEach(line => {
-      const len = line.getTotalLength();
-      line.style.strokeDasharray  = len;
-      line.style.strokeDashoffset = len;
-    });
-
-    const BASE = 2200;
-    const order = [
-      ['.funnel__side--left',  BASE],
-      ['.funnel__side--right', BASE],
-      ['.funnel__h--1',        BASE + 450],
-      ['.funnel__h--2',        BASE + 750],
-      ['.funnel__h--3',        BASE + 1050],
-    ];
-
+  // Retrasar el layout hasta que las animaciones heroFadeIn hayan terminado
+  // (última termina a 360ms + 450ms = 810ms; usamos 950ms de margen)
+  setTimeout(() => {
     requestAnimationFrame(() => {
-      order.forEach(([sel, delay]) => {
-        const el = svg.querySelector(sel);
-        if (!el) return;
-        el.style.transition       = `stroke-dashoffset 1s ease-out ${delay}ms`;
-        el.style.strokeDashoffset = '0';
-      });
-    });
+      layout();
 
-    // Limpiar estilos de animación cuando todo haya terminado (evita problemas en resize)
-    setTimeout(() => {
+      if (reduced) return;
+
+      // Ocultar líneas para animarlas progresivamente
       allLines().forEach(line => {
-        line.style.transition       = 'none';
-        line.style.strokeDasharray  = '';
-        line.style.strokeDashoffset = '';
+        const len = line.getTotalLength();
+        line.style.strokeDasharray  = len;
+        line.style.strokeDashoffset = len;
       });
-    }, BASE + 1050 + 1000 + 200);
-  });
+
+      const BASE = 2200;
+      const order = [
+        ['.funnel__top',         BASE],
+        ['.funnel__side--left',  BASE + 100],
+        ['.funnel__side--right', BASE + 100],
+        ['.funnel__h--1',        BASE + 500],
+        ['.funnel__h--2',        BASE + 800],
+        ['.funnel__h--3',        BASE + 1100],
+        ['.funnel__bot',         BASE + 1300],
+      ];
+
+      requestAnimationFrame(() => {
+        order.forEach(([sel, delay]) => {
+          const el = svg.querySelector(sel);
+          if (!el) return;
+          el.style.transition       = `stroke-dashoffset 1s ease-out ${delay}ms`;
+          el.style.strokeDashoffset = '0';
+        });
+      });
+
+      // Limpiar estilos de animación cuando todo haya terminado
+      setTimeout(() => {
+        allLines().forEach(line => {
+          line.style.transition       = 'none';
+          line.style.strokeDasharray  = '';
+          line.style.strokeDashoffset = '';
+        });
+      }, BASE + 1300 + 1000 + 200);
+    });
+  }, 950);
 
   window.addEventListener('resize', layout);
 }());
