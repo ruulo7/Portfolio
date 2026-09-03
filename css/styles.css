@@ -893,6 +893,7 @@ a {
 }
 .funnel line,
 .funnel polyline {
+  fill: none;
   stroke: #6B7280;
   stroke-width: 1.5;
   stroke-opacity: 0.18;
