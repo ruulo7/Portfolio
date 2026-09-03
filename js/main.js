@@ -636,16 +636,18 @@ window.addEventListener('scroll', () => {
     const yG3 = (B(sub)     + T(actions)) / 2;
     const yB  = B(actions)  + PAD;
 
-    // Embudo: anclado al texto real + margen mínimo garantizado
+    // Boca superior: anclada al título real + margen mínimo garantizado
     const MARGIN = Math.max(24, W * 0.025);
-    const tL = title.getBoundingClientRect().left   - hRect.left;
-    const tR = title.getBoundingClientRect().right  - hRect.left;
-    const aL = actions.getBoundingClientRect().left  - hRect.left;
-    const aR = actions.getBoundingClientRect().right - hRect.left;
+    const tL = title.getBoundingClientRect().left  - hRect.left;
+    const tR = title.getBoundingClientRect().right - hRect.left;
     const xLT = Math.max(4, tL - MARGIN);
     const xRT = Math.min(W - 4, tR + MARGIN);
-    const xLB = Math.max(4, aL - MARGIN * 0.5);
-    const xRB = Math.min(W - 4, aR + MARGIN * 0.5);
+    // Base inferior: 45% del ancho de la boca, centrada — garantiza convergencia clara
+    const topW  = xRT - xLT;
+    const botW  = topW * 0.45;
+    const xCtr  = W / 2;
+    const xLB   = xCtr - botW / 2;
+    const xRB   = xCtr + botW / 2;
 
     const f  = y => (y - yT) / (yB - yT);
     const xL = y => xLT + f(y) * (xLB - xLT);
