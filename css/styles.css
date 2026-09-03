@@ -891,9 +891,7 @@ a {
   pointer-events: none;
   z-index: 0;
 }
-.funnel line,
-.funnel polyline {
-  fill: none;
+.funnel line {
   stroke: #6B7280;
   stroke-width: 1.5;
   stroke-opacity: 0.18;
