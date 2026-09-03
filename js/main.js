@@ -636,9 +636,16 @@ window.addEventListener('scroll', () => {
     const yG3 = (B(sub)     + T(actions)) / 2;
     const yB  = B(actions)  + PAD;
 
-    // Embudo: 84% ancho arriba → 32% ancho abajo, centrado
-    const xLT = W * 0.08,  xRT = W * 0.92;
-    const xLB = W * 0.34,  xRB = W * 0.66;
+    // Embudo: anclado al texto real + margen mínimo garantizado
+    const MARGIN = Math.max(24, W * 0.025);
+    const tL = title.getBoundingClientRect().left   - hRect.left;
+    const tR = title.getBoundingClientRect().right  - hRect.left;
+    const aL = actions.getBoundingClientRect().left  - hRect.left;
+    const aR = actions.getBoundingClientRect().right - hRect.left;
+    const xLT = Math.max(4, tL - MARGIN);
+    const xRT = Math.min(W - 4, tR + MARGIN);
+    const xLB = Math.max(4, aL - MARGIN * 0.5);
+    const xRB = Math.min(W - 4, aR + MARGIN * 0.5);
 
     const f  = y => (y - yT) / (yB - yT);
     const xL = y => xLT + f(y) * (xLB - xLT);
