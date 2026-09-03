@@ -632,26 +632,28 @@ window.addEventListener('scroll', () => {
     const PAD = 24;
     const yT  = T(eyebrow) - PAD;
     const yG1 = (B(eyebrow) + T(title))   / 2;
+    const yM  = B(title);                        // quiebre: fin de la zona paralela
     const yG2 = (B(title)   + T(sub))     / 2;
     const yG3 = (B(sub)     + T(actions)) / 2;
     const yB  = B(actions)  + PAD;
 
-    // Boca superior: anclada al título real + margen mínimo garantizado
+    // Zona paralela: lados verticales fuera del título + margen
     const MARGIN = Math.max(24, W * 0.025);
     const tL = title.getBoundingClientRect().left  - hRect.left;
     const tR = title.getBoundingClientRect().right - hRect.left;
-    const xLT = Math.max(4, tL - MARGIN);
-    const xRT = Math.min(W - 4, tR + MARGIN);
-    // Base inferior: 45% del ancho de la boca, centrada — garantiza convergencia clara
-    const topW  = xRT - xLT;
-    const botW  = topW * 0.45;
-    const xCtr  = W / 2;
-    const xLB   = xCtr - botW / 2;
-    const xRB   = xCtr + botW / 2;
+    const xLM = Math.max(4, tL - MARGIN);         // x fijo del lado izquierdo hasta yM
+    const xRM = Math.min(W - 4, tR + MARGIN);     // x fijo del lado derecho hasta yM
 
-    const f  = y => (y - yT) / (yB - yT);
-    const xL = y => xLT + f(y) * (xLB - xLT);
-    const xR = y => xRT + f(y) * (xRB - xRT);
+    // Zona convergente: desde yM hasta yB — 45 % del ancho de la boca, centrado
+    const botW = (xRM - xLM) * 0.45;
+    const xCtr = W / 2;
+    const xLB  = xCtr - botW / 2;
+    const xRB  = xCtr + botW / 2;
+
+    // Interpolación en la zona convergente (yM → yB)
+    const fC  = y => (y - yM) / (yB - yM);
+    const xLC = y => xLM + fC(y) * (xLB - xLM);
+    const xRC = y => xRM + fC(y) * (xRB - xRM);
 
     const top = svg.querySelector('.funnel__top');
     const bot = svg.querySelector('.funnel__bot');
@@ -661,19 +663,21 @@ window.addEventListener('scroll', () => {
     const h2  = svg.querySelector('.funnel__h--2');
     const h3  = svg.querySelector('.funnel__h--3');
 
-    // Líneas de cierre (boca superior e inferior del embudo)
-    attr(top, 'x1', xLT);     attr(top, 'y1', yT);   attr(top, 'x2', xRT);     attr(top, 'y2', yT);
-    attr(bot, 'x1', xLB);     attr(bot, 'y1', yB);   attr(bot, 'x2', xRB);     attr(bot, 'y2', yB);
-    // Lados diagonales
-    attr(sL, 'x1', xLT);      attr(sL, 'y1', yT);    attr(sL, 'x2', xLB);      attr(sL, 'y2', yB);
-    attr(sR, 'x1', xRT);      attr(sR, 'y1', yT);    attr(sR, 'x2', xRB);      attr(sR, 'y2', yB);
-    // Divisiones horizontales centradas en los huecos entre bloques
-    attr(h1, 'x1', xL(yG1)); attr(h1, 'y1', yG1);   attr(h1, 'x2', xR(yG1)); attr(h1, 'y2', yG1);
-    attr(h2, 'x1', xL(yG2)); attr(h2, 'y1', yG2);   attr(h2, 'x2', xR(yG2)); attr(h2, 'y2', yG2);
-    attr(h3, 'x1', xL(yG3)); attr(h3, 'y1', yG3);   attr(h3, 'x2', xR(yG3)); attr(h3, 'y2', yG3);
+    const r = v => Math.round(v);
+
+    // Líneas de cierre
+    attr(top, 'x1', xLM); attr(top, 'y1', yT);  attr(top, 'x2', xRM); attr(top, 'y2', yT);
+    attr(bot, 'x1', xLB); attr(bot, 'y1', yB);  attr(bot, 'x2', xRB); attr(bot, 'y2', yB);
+    // Lados: zona paralela (vertical) hasta yM, luego convergente hasta yB
+    sL.setAttribute('points', `${r(xLM)},${r(yT)} ${r(xLM)},${r(yM)} ${r(xLB)},${r(yB)}`);
+    sR.setAttribute('points', `${r(xRM)},${r(yT)} ${r(xRM)},${r(yM)} ${r(xRB)},${r(yB)}`);
+    // Divisiones horizontales: h1 en zona paralela, h2/h3 en zona convergente
+    attr(h1, 'x1', xLM);      attr(h1, 'y1', yG1); attr(h1, 'x2', xRM);      attr(h1, 'y2', yG1);
+    attr(h2, 'x1', xLC(yG2)); attr(h2, 'y1', yG2); attr(h2, 'x2', xRC(yG2)); attr(h2, 'y2', yG2);
+    attr(h3, 'x1', xLC(yG3)); attr(h3, 'y1', yG3); attr(h3, 'x2', xRC(yG3)); attr(h3, 'y2', yG3);
   }
 
-  const allLines = () => Array.from(svg.querySelectorAll('line'));
+  const allLines = () => Array.from(svg.querySelectorAll('line, polyline'));
 
   // Retrasar el layout hasta que las animaciones heroFadeIn hayan terminado
   // (última termina a 360ms + 450ms = 810ms; usamos 950ms de margen)
